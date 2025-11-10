@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:23:18 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/10 17:08:17 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:55:11 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ void	dda(t_game *game);
 void	put_pixel(t_game *game, int x, int y, int color);
 void	step_calc(t_game *game, t_tex *tex);
 void	pixel_loop(t_game *game, t_tex *tex, int *color, int x);
+void	rotate_right(t_game *g, double angle);
+void	rotate_left(t_game *g, double angle);
 
 t_tex	*wall_select(t_game *game);
 
