@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:23:18 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/06 14:20:50 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:08:17 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,9 @@ typedef struct s_game
 	int		player_x;
 	int		player_y;
 
+	double	coll_margin;
 	double	move_speed;
+	double	rot_speed;
 
 	char	**map;
 
@@ -122,9 +124,14 @@ int		is_invalid(char c);
 
 int		game_init(t_game *game);
 int		game_load(t_game *game);
+int		game_loop(t_game *g);
 
 void	dda(t_game *game);
 void	put_pixel(t_game *game, int x, int y, int color);
+void	step_calc(t_game *game, t_tex *tex);
+void	pixel_loop(t_game *game, t_tex *tex, int *color, int x);
+
+t_tex	*wall_select(t_game *game);
 
 /* movement */
 
@@ -132,6 +139,8 @@ void	move_forward(t_game *game);
 void	move_backward(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
+void	look_left(t_game *game);
+void	look_right(t_game *game);
 
 /* hooks */
 

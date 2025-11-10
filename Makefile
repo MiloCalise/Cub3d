@@ -6,7 +6,7 @@
 #    By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/30 16:11:53 by miltavar          #+#    #+#              #
-#    Updated: 2025/11/07 16:30:39 by miltavar         ###   ########.fr        #
+#    Updated: 2025/11/10 17:08:54 by miltavar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,19 @@ SRCS = srcs/main.c \
 		srcs/game/game_init.c \
 		srcs/utils/common_utils.c \
 		srcs/hooks/movement.c \
+		srcs/hooks/look.c \
 		srcs/hooks/hooks.c \
 		srcs/parsing/parsing.c \
 		srcs/parsing/paths.c \
 		srcs/parsing/colors.c \
+		srcs/parsing/flood_fill.c \
 		srcs/parsing/map.c \
 		srcs/parsing/utils.c \
 		srcs/parsing/player.c \
 		srcs/images/pixels.c \
 		srcs/images/textures.c \
-		srcs/game/dda.c
+		srcs/game/dda.c \
+		srcs/game/dda_utils.c
 
 
 BOLD = \e[1m

@@ -6,44 +6,73 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:56:12 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/06 14:19:08 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/10 14:58:18 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	move_forward(t_game *game)
+void	move_forward(t_game *g)
 {
-	if (game->map[(int)game->ray->posY][(int)(game->ray->posX + game->ray->dirX * game->move_speed)] == '0')
-		game->ray->posX += game->ray->dirX * game->move_speed;
-	if (game->map[(int)(game->ray->posY + game->ray->dirY * game->move_speed)][(int)game->ray->posX] == '0')
-		game->ray->posY += game->ray->dirY * game->move_speed;
-	dda(game);
+	double	newX;
+	double	newY;
+
+	newX = g->ray->posX + g->ray->dirX * g->move_speed;
+	newY = g->ray->posY + g->ray->dirY * g->move_speed;
+	if (g->map[(int)g->ray->posY]
+		[(int)(newX + g->ray->dirX * g->coll_margin)] != '1')
+		g->ray->posX = newX;
+	if (g->map[(int)(newY + g->ray->dirY * g->coll_margin)]
+		[(int)g->ray->posX] != '1')
+		g->ray->posY = newY;
+	dda(g);
 }
 
-void	move_backward(t_game *game)
+void	move_backward(t_game *g)
 {
-	if (game->map[(int)game->ray->posY][(int)(game->ray->posX + game->ray->dirX * game->move_speed)] == '0')
-		game->ray->posX -= game->ray->dirX * game->move_speed;
-	if (game->map[(int)(game->ray->posY + game->ray->dirY * game->move_speed)][(int)game->ray->posX] == '0')
-		game->ray->posY -= game->ray->dirY * game->move_speed;
-	dda(game);
+	double	newX;
+	double	newY;
+
+	newX = g->ray->posX - g->ray->dirX * g->move_speed;
+	newY = g->ray->posY - g->ray->dirY * g->move_speed;
+	if (g->map[(int)g->ray->posY]
+		[(int)(newX - g->ray->dirX * g->coll_margin)] != '1')
+		g->ray->posX = newX;
+	if (g->map[(int)(newY - g->ray->dirY * g->coll_margin)]
+		[(int)g->ray->posX] != '1')
+		g->ray->posY = newY;
+	dda(g);
 }
 
-void	move_right(t_game *game)
+void	move_right(t_game *g)
 {
-	if (game->map[(int)game->ray->posY][(int)(game->ray->posX + game->ray->planeX * game->move_speed)] == '0')
-		game->ray->posX += game->ray->planeX * game->move_speed;
-	if (game->map[(int)(game->ray->posY + game->ray->planeY * game->move_speed)][(int)game->ray->posY] == '0')
-		game->ray->posY += game->ray->planeY * game->move_speed;
-	dda(game);
+	double	newX;
+	double	newY;
+
+	newX = g->ray->posX + g->ray->planeX * g->move_speed;
+	newY = g->ray->posY + g->ray->planeY * g->move_speed;
+	if (g->map[(int)g->ray->posY]
+		[(int)(newX + g->ray->planeX * g->coll_margin)] != '1')
+		g->ray->posX = newX;
+	if (g->map[(int)(newY + g->ray->planeY * g->coll_margin)]
+		[(int)g->ray->posX] != '1')
+		g->ray->posY = newY;
+	dda(g);
 }
 
-void	move_left(t_game *game)
+void	move_left(t_game *g)
 {
-	if (game->map[(int)game->ray->posY][(int)(game->ray->posX + game->ray->planeX * game->move_speed)] == '0')
-		game->ray->posX -= game->ray->planeX * game->move_speed;
-	if (game->map[(int)(game->ray->posY + game->ray->planeY * game->move_speed)][(int)game->ray->posY] == '0')
-		game->ray->posY -= game->ray->planeY * game->move_speed;
-	dda(game);
+	double	newX;
+	double	newY;
+
+	newX = g->ray->posX - g->ray->planeX * g->move_speed;
+	newY = g->ray->posY - g->ray->planeY * g->move_speed;
+	if (g->map[(int)g->ray->posY]
+		[(int)(newX - g->ray->planeX * g->coll_margin)] != '1')
+		g->ray->posX = newX;
+	if (g->map[(int)(newY - g->ray->planeY * g->coll_margin)]
+		[(int)g->ray->posX] != '1')
+		g->ray->posY = newY;
+	dda(g);
 }
+

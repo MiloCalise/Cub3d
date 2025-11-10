@@ -6,36 +6,11 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:07:11 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/06 11:15:39 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:37:26 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-
-void	flood_fill(t_game *game, int x, int y, char **copy)
-{
-	int	len;
-
-	len = ft_strlen(copy[y]);
-	if (x < 0 || x >= len || y < 0 || y >= game->map_size)
-		return ;
-	if (copy[y][x] == '1' || copy[y][x] == '3')
-		return ;
-	else if (copy[y][x] == '0' || copy[y][x] == 'N'
-		|| copy[y][x] == 'W' || copy[y][x] == 'E' || copy[y][x] == 'S')
-	{
-		copy[y][x] = '3';
-		flood_fill(game, x - 1, y, copy);
-		flood_fill(game, x + 1, y, copy);
-		flood_fill(game, x, y - 1, copy);
-		flood_fill(game, x, y + 1, copy);
-	}
-	else if (is_invalid(copy[y][x]))
-	{
-		game->player_x = -1;
-		return ;
-	}
-}
 
 int	check_line(char *s, int index, int max, t_game *game)
 {
@@ -51,7 +26,8 @@ int	check_line(char *s, int index, int max, t_game *game)
 		}
 		else
 		{
-			if (s[i] != '1' && !is_whitespace(s[i]) && s[i] != '0' && s[i] != 'N' && s[i] != 'S' && s[i] != 'E' && s[i] != 'W')
+			if (s[i] != '1' && !is_whitespace(s[i]) && s[i] != '0'
+				&& s[i] != 'N' && s[i] != 'S' && s[i] != 'E' && s[i] != 'W')
 				return (1);
 			if (s[i] == 'N' || s[i] == 'S' || s[i] == 'W' || s[i] == 'E')
 				1 && (game->player_x = i, game->player_y = index);
@@ -70,7 +46,7 @@ int	copy_map(char **copy, t_game *game)
 	{
 		copy[i] = ft_strdup(game->map[i]);
 		if (!copy[i])
-			return (perror(NULL) ,free_split(copy), 1);
+			return (perror(NULL), free_split(copy), 1);
 		i++;
 	}
 	copy[i] = NULL;

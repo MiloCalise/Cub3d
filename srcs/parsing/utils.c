@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:11:39 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/06 11:15:01 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:38:51 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char	*skip_space(int fd, char *temp)
 
 int	is_invalid(char c)
 {
-	if (c != 'N' && c != 'W' && c != 'E' && c != 'S' && c != '3' && c != '1' && c != '0')
+	if (c != 'N' && c != 'W' && c != 'E'
+		&& c != 'S' && c != '3' && c != '1' && c != '0')
 		return (1);
 	return (0);
 }

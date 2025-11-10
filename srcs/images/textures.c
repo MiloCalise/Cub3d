@@ -6,79 +6,88 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 16:28:55 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/07 16:32:42 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:12:10 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static int	south_img(t_game *game)
+static int	south_img(t_game *g)
 {
-	game->south.img = mlx_xpm_file_to_image(game->gptr, game->path_s, &game->south.x, &game->main.y);
-	if (!game->south.img)
+	g->south.img = mlx_xpm_file_to_image(g->gptr, g->path_s,
+			&g->south.x, &g->south.y);
+	if (!g->south.img)
 		return (ft_putstr_fd("invalid map\n", 2), 1);
-	if (game->south.x > 256 || game->south.y > 256)
+	if (g->south.x > 256 || g->south.y > 256)
 		return (ft_putstr_fd("texture too large\n", 2), 1);
-	game->south.addr = mlx_get_data_addr(game->south.img, &game->south.bpp, &game->south.line_len, &game->south.endian);
-	if (!game->south.addr)
+	g->south.addr = mlx_get_data_addr(g->south.img,
+			&g->south.bpp, &g->south.line_len, &g->south.endian);
+	if (!g->south.addr)
 		return (ft_putstr_fd("failed to load addr\n", 2), 1);
 	return (0);
 }
 
-static int	east_img(t_game *game)
+static int	east_img(t_game *g)
 {
-	game->east.img = mlx_xpm_file_to_image(game->gptr, game->path_e, &game->east.x, &game->main.y);
-	if (!game->east.img)
+	g->east.img = mlx_xpm_file_to_image(g->gptr, g->path_e,
+			&g->east.x, &g->east.y);
+	if (!g->east.img)
 		return (ft_putstr_fd("invalid map\n", 2), 1);
-	if (game->east.x > 256 || game->east.y > 256)
+	if (g->east.x > 256 || g->east.y > 256)
 		return (ft_putstr_fd("texture too large\n", 2), 1);
-	game->east.addr = mlx_get_data_addr(game->east.img, &game->east.bpp, &game->east.line_len, &game->east.endian);
-	if (!game->east.addr)
+	g->east.addr = mlx_get_data_addr(g->east.img, &g->east.bpp,
+			&g->east.line_len, &g->east.endian);
+	if (!g->east.addr)
 		return (ft_putstr_fd("failed to load addr\n", 2), 1);
 	return (0);
 }
 
-static int	west_img(t_game *game)
+static int	west_img(t_game *g)
 {
-	game->west.img = mlx_xpm_file_to_image(game->gptr, game->path_w, &game->west.x, &game->main.y);
-	if (!game->west.img)
+	g->west.img = mlx_xpm_file_to_image(g->gptr, g->path_w,
+			&g->west.x, &g->west.y);
+	if (!g->west.img)
 		return (ft_putstr_fd("invalid map\n", 2), 1);
-	if (game->west.x > 256 || game->west.y > 256)
+	if (g->west.x > 256 || g->west.y > 256)
 		return (ft_putstr_fd("texture too large\n", 2), 1);
-	game->west.addr = mlx_get_data_addr(game->west.img, &game->west.bpp, &game->west.line_len, &game->west.endian);
-	if (!game->west.addr)
+	g->west.addr = mlx_get_data_addr(g->west.img, &g->west.bpp,
+			&g->west.line_len, &g->west.endian);
+	if (!g->west.addr)
 		return (ft_putstr_fd("failed to load addr\n", 2), 1);
 	return (0);
 }
 
-static int	north_img(t_game *game)
+static int	north_img(t_game *g)
 {
-	game->north.img = mlx_xpm_file_to_image(game->gptr, game->path_n, &game->north.x, &game->main.y);
-	if (!game->north.img)
+	g->north.img = mlx_xpm_file_to_image(g->gptr, g->path_n,
+			&g->north.x, &g->north.y);
+	if (!g->north.img)
 		return (ft_putstr_fd("invalid map\n", 2), 1);
-	if (game->north.x > 256 || game->north.y > 256)
+	if (g->north.x > 256 || g->north.y > 256)
 		return (ft_putstr_fd("texture too large\n", 2), 1);
-	game->north.addr = mlx_get_data_addr(game->north.img, &game->north.bpp, &game->north.line_len, &game->north.endian);
-	if (!game->north.addr)
+	g->north.addr = mlx_get_data_addr(g->north.img, &g->north.bpp,
+			&g->north.line_len, &g->north.endian);
+	if (!g->north.addr)
 		return (ft_putstr_fd("failed to load addr\n", 2), 1);
 	return (0);
 }
 
-int	game_load(t_game *game)
+int	game_load(t_game *g)
 {
-	game->main.img = mlx_new_image(game->gptr, game->scr_x, game->scr_y);
-	if (!game->main.img)
+	g->main.img = mlx_new_image(g->gptr, g->scr_x, g->scr_y);
+	if (!g->main.img)
 		return (1);
-	game->main.addr = mlx_get_data_addr(game->main.img, &game->main.bpp, &game->main.line_len, &game->main.endian);
-	if (!game->main.addr)
+	g->main.addr = mlx_get_data_addr(g->main.img, &g->main.bpp,
+			&g->main.line_len, &g->main.endian);
+	if (!g->main.addr)
 		return (ft_putstr_fd("failed to load addr\n", 2), 1);
-	if (north_img(game) == 1)
+	if (north_img(g) == 1)
 		return (1);
-	if (south_img(game) == 1)
+	if (south_img(g) == 1)
 		return (1);
-	if (east_img(game) == 1)
+	if (east_img(g) == 1)
 		return (1);
-	if (west_img(game) == 1)
+	if (west_img(g) == 1)
 		return (1);
 	return (0);
 }
