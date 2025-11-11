@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:47:47 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/10 18:56:12 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/11 13:54:55 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ int	keys(int keycode, t_game *game)
 		rotate_left(game, game->rot_speed);
 	else if (keycode == XK_Right)
 		rotate_right(game, game->rot_speed);
-	dda(game);
 	return (0);
 }

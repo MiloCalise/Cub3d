@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:23:18 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/11 12:23:03 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/11 14:01:03 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,83 +29,88 @@
 
 typedef struct s_tex
 {
-	void	*img;
-	char	*addr;
-	int		endian;
-	int		bpp;
-	int		line_len;
-	int		x;
-	int		y;
-}			t_tex;
+	void			*img;
+	char			*addr;
+	int				endian;
+	int				bpp;
+	int				line_len;
+	int				x;
+	int				y;
+}					t_tex;
 
 typedef struct s_ray
 {
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	int		side;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		text_x;
-	int		text_y;
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	int				text_x;
+	int				text_y;
 
-	double	pos_x;
-	double	pos_y;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	double	dir_x;
-	double	dir_y;
-	double	dist_x;
-	double	dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	plane_x;
-	double	plane_y;
-	double	camera_x;
-	double	wall_dist;
-	double	wall_x;
-	double	step;
-	double	texpos;
+	double			pos_x;
+	double			pos_y;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	double			dir_x;
+	double			dir_y;
+	double			dist_x;
+	double			dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			plane_x;
+	double			plane_y;
+	double			camera_x;
+	double			wall_dist;
+	double			wall_x;
+	double			step;
+	double			texpos;
 
-}			t_ray;
+}					t_ray;
 
 typedef struct s_game
 {
-	char	*path_n;
-	char	*path_s;
-	char	*path_w;
-	char	*path_e;
+	struct timeval	time;
 
-	int		floor_clr;
-	int		top_clr;
-	int		scr_x;
-	int		scr_y;
-	int		map_size;
-	int		player_x;
-	int		player_y;
+	char			*path_n;
+	char			*path_s;
+	char			*path_w;
+	char			*path_e;
 
-	double	coll_margin;
-	double	move_speed;
-	double	rot_speed;
+	int				floor_clr;
+	int				top_clr;
+	int				scr_x;
+	int				scr_y;
+	int				map_size;
+	int				player_x;
+	int				player_y;
+	int				fps;
 
-	char	**map;
+	double			coll_margin;
+	double			move_speed;
+	double			rot_speed;
+	double			frame_time;
+	double			old_time;
 
-	void	*gptr;
-	void	*win;
+	char			**map;
 
-	t_tex	north;
-	t_tex	south;
-	t_tex	east;
-	t_tex	west;
-	t_tex	main;
+	void			*gptr;
+	void			*win;
 
-	t_ray	*ray;
+	t_tex			north;
+	t_tex			south;
+	t_tex			east;
+	t_tex			west;
+	t_tex			main;
 
-}			t_game;
+	t_ray			*ray;
+
+}					t_game;
 
 /* parsing */
 
