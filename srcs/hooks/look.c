@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 13:17:45 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/10 18:54:10 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:37:41 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 void	rotate_left(t_game *g, double angle)
 {
-	double	old_dirX;
-	double	old_planeX;
+	double	olddirx;
+	double	oldplanex;
 
-	old_dirX = g->ray->dirX;
-	old_planeX = g->ray->planeX;
-	g->ray->dirX = g->ray->dirX * cos(-angle) - g->ray->dirY * sin(-angle);
-	g->ray->dirY = old_dirX * sin(-angle) + g->ray->dirY * cos(-angle);
-	g->ray->planeX = g->ray->planeX * cos(-angle) - g->ray->planeY * sin(-angle);
-	g->ray->planeY = old_planeX * sin(-angle) + g->ray->planeY * cos(-angle);
+	olddirx = g->ray->dir_x;
+	oldplanex = g->ray->plane_x;
+	g->ray->dir_x = g->ray->dir_x * cos(-angle) - g->ray->dir_y * sin(-angle);
+	g->ray->dir_y = olddirx * sin(-angle) + g->ray->dir_y * cos(-angle);
+	g->ray->plane_x = g->ray->plane_x * cos(-angle)
+		- g->ray->plane_y * sin(-angle);
+	g->ray->plane_y = oldplanex * sin(-angle) + g->ray->plane_y * cos(-angle);
 }
 
 void	rotate_right(t_game *g, double angle)
 {
-	double	old_dirX;
-	double	old_planeX;
+	double	olddirx;
+	double	oldplanex;
 
-	old_dirX = g->ray->dirX;
-	old_planeX = g->ray->planeX;
-	g->ray->dirX = g->ray->dirX * cos(angle) - g->ray->dirY * sin(angle);
-	g->ray->dirY = old_dirX * sin(angle) + g->ray->dirY * cos(angle);
-	g->ray->planeX = g->ray->planeX * cos(angle) - g->ray->planeY * sin(angle);
-	g->ray->planeY = old_planeX * sin(angle) + g->ray->planeY * cos(angle);
+	olddirx = g->ray->dir_x;
+	oldplanex = g->ray->plane_x;
+	g->ray->dir_x = g->ray->dir_x * cos(angle) - g->ray->dir_y * sin(angle);
+	g->ray->dir_y = olddirx * sin(angle) + g->ray->dir_y * cos(angle);
+	g->ray->plane_x = g->ray->plane_x * cos(angle)
+		- g->ray->plane_y * sin(angle);
+	g->ray->plane_y = oldplanex * sin(angle) + g->ray->plane_y * cos(angle);
 }

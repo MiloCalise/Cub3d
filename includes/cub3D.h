@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:23:18 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/10 18:55:11 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:23:03 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,34 +40,34 @@ typedef struct s_tex
 
 typedef struct s_ray
 {
-	int		mapX;
-	int		mapY;
-	int		stepY;
-	int		stepX;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
 	int		side;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
-	int		textX;
-	int		textY;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		text_x;
+	int		text_y;
 
-	double	posX;
-	double	posY;
-	double	ray_dirX;
-	double	ray_dirY;
-	double	dirX;
-	double	dirY;
-	double	distX;
-	double	distY;
-	double	delta_distX;
-	double	delta_distY;
-	double	side_distX;
-	double	side_distY;
-	double	planeX;
-	double	planeY;
-	double	cameraX;
-	double	WallDist;
-	double	wallX;
+	double	pos_x;
+	double	pos_y;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	dir_x;
+	double	dir_y;
+	double	dist_x;
+	double	dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	plane_x;
+	double	plane_y;
+	double	camera_x;
+	double	wall_dist;
+	double	wall_x;
 	double	step;
 	double	texpos;
 

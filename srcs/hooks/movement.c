@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:56:12 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/10 18:41:57 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:34:41 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,60 @@
 
 void	move_forward(t_game *g)
 {
-	double	newX;
-	double	newY;
+	double	newx;
+	double	newy;
 
-	newX = g->ray->posX + g->ray->dirX * g->move_speed;
-	newY = g->ray->posY + g->ray->dirY * g->move_speed;
-	if (g->map[(int)g->ray->posY]
-		[(int)(newX + g->ray->dirX * g->coll_margin)] != '1')
-		g->ray->posX = newX;
-	if (g->map[(int)(newY + g->ray->dirY * g->coll_margin)]
-		[(int)g->ray->posX] != '1')
-		g->ray->posY = newY;
+	newx = g->ray->pos_x + g->ray->dir_x * g->move_speed;
+	newy = g->ray->pos_y + g->ray->dir_y * g->move_speed;
+	if (g->map[(int)g->ray->pos_y]
+		[(int)(newx + g->ray->dir_x * g->coll_margin)] != '1')
+		g->ray->pos_x = newx;
+	if (g->map[(int)(newy + g->ray->dir_y * g->coll_margin)]
+		[(int)g->ray->pos_x] != '1')
+		g->ray->pos_y = newy;
 }
 
 void	move_backward(t_game *g)
 {
-	double	newX;
-	double	newY;
+	double	newx;
+	double	newy;
 
-	newX = g->ray->posX - g->ray->dirX * g->move_speed;
-	newY = g->ray->posY - g->ray->dirY * g->move_speed;
-	if (g->map[(int)g->ray->posY]
-		[(int)(newX - g->ray->dirX * g->coll_margin)] != '1')
-		g->ray->posX = newX;
-	if (g->map[(int)(newY - g->ray->dirY * g->coll_margin)]
-		[(int)g->ray->posX] != '1')
-		g->ray->posY = newY;
+	newx = g->ray->pos_x - g->ray->dir_x * g->move_speed;
+	newy = g->ray->pos_y - g->ray->dir_y * g->move_speed;
+	if (g->map[(int)g->ray->pos_y]
+		[(int)(newx - g->ray->dir_x * g->coll_margin)] != '1')
+		g->ray->pos_x = newx;
+	if (g->map[(int)(newy - g->ray->dir_y * g->coll_margin)]
+		[(int)g->ray->pos_x] != '1')
+		g->ray->pos_y = newy;
 }
 
 void	move_right(t_game *g)
 {
-	double	newX;
-	double	newY;
+	double	newx;
+	double	newy;
 
-	newX = g->ray->posX + g->ray->planeX * g->move_speed;
-	newY = g->ray->posY + g->ray->planeY * g->move_speed;
-	if (g->map[(int)g->ray->posY]
-		[(int)(newX + g->ray->planeX * g->coll_margin)] != '1')
-		g->ray->posX = newX;
-	if (g->map[(int)(newY + g->ray->planeY * g->coll_margin)]
-		[(int)g->ray->posX] != '1')
-		g->ray->posY = newY;
+	newx = g->ray->pos_x + g->ray->plane_x * g->move_speed;
+	newy = g->ray->pos_y + g->ray->plane_y * g->move_speed;
+	if (g->map[(int)g->ray->pos_y]
+		[(int)(newx + g->ray->plane_x * g->coll_margin)] != '1')
+		g->ray->pos_x = newx;
+	if (g->map[(int)(newy + g->ray->plane_y * g->coll_margin)]
+		[(int)g->ray->pos_x] != '1')
+		g->ray->pos_y = newy;
 }
 
 void	move_left(t_game *g)
 {
-	double	newX;
-	double	newY;
+	double	newx;
+	double	newy;
 
-	newX = g->ray->posX - g->ray->planeX * g->move_speed;
-	newY = g->ray->posY - g->ray->planeY * g->move_speed;
-	if (g->map[(int)g->ray->posY]
-		[(int)(newX - g->ray->planeX * g->coll_margin)] != '1')
-		g->ray->posX = newX;
-	if (g->map[(int)(newY - g->ray->planeY * g->coll_margin)]
-		[(int)g->ray->posX] != '1')
-		g->ray->posY = newY;
+	newx = g->ray->pos_x - g->ray->plane_x * g->move_speed;
+	newy = g->ray->pos_y - g->ray->plane_y * g->move_speed;
+	if (g->map[(int)g->ray->pos_y]
+		[(int)(newx - g->ray->plane_x * g->coll_margin)] != '1')
+		g->ray->pos_x = newx;
+	if (g->map[(int)(newy - g->ray->plane_y * g->coll_margin)]
+		[(int)g->ray->pos_x] != '1')
+		g->ray->pos_y = newy;
 }
-

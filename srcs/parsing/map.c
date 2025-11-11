@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:07:11 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/10 12:37:26 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/11/11 12:35:25 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	map_check(t_game *game)
 	}
 	if (game->player_x == -1)
 		return (1);
-	game->ray->posX = (double)game->player_x;
-	game->ray->posY = (double)game->player_y;
+	game->ray->pos_x = (double)game->player_x;
+	game->ray->pos_y = (double)game->player_y;
 	return (0);
 }
 

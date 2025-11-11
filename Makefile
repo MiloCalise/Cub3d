@@ -6,7 +6,7 @@
 #    By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/30 16:11:53 by miltavar          #+#    #+#              #
-#    Updated: 2025/11/10 17:08:54 by miltavar         ###   ########.fr        #
+#    Updated: 2025/11/11 12:38:45 by miltavar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,39 +56,31 @@ MLX 		= $(MLX_PATH)/libmlx_Linux.a
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(FT_FPRINTF) $(MLX)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_FPRINTF) $(MLX) $(MLXFLAGS) -o $(NAME)
-	@echo "⚜️​   $(BOLD)$(PURPLE)$(NAME)$(RESET) $(GREEN)est compilé$(RESET) ​⚜️​​"
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_FPRINTF) $(MLX) $(MLXFLAGS) -o $(NAME)
 
 $(LIBFT):
-	@$(MAKE) $(LIBFT_PATH)
+	$(MAKE) $(LIBFT_PATH)
 
 $(FT_FPRINTF):
-	@$(MAKE) $(FT_FPRINTF_PATH)
+	$(MAKE) $(FT_FPRINTF_PATH)
 
 $(MLX):
-	@$(MAKE) $(MLX_PATH)
+	$(MAKE) $(MLX_PATH)
 
 %.o: %.c includes/cub3D.h
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJS) $(LIBFT) $(FT_FPRINTF) $(MLX)
-	@$(MAKE) $(LIBFT_PATH) clean
-	@$(MAKE) $(FT_FPRINTF_PATH) clean
-	@$(MAKE) $(MLX_PATH) clean
-	@echo "$(GRAY)Nettoyage des$(RESET) $(BOLD)fichiers source de minishell$(RESET) $(GRAY)terminé$(RESET) 🚮"
+	rm -f $(OBJS) $(LIBFT) $(FT_FPRINTF) $(MLX)
+	$(MAKE) $(LIBFT_PATH) clean
+	$(MAKE) $(FT_FPRINTF_PATH) clean
+	$(MAKE) $(MLX_PATH) clean
 
 fclean: clean
-	@rm -f $(NAME) $(LIBFT)
-	@$(MAKE) $(LIBFT_PATH) fclean
-	@$(MAKE) $(FT_FPRINTF_PATH) fclean
-	@$(MAKE) $(MLX_PATH) clean
-	@echo "$(GRAY)Nettoyage de$(RESET) $(BOLD)$(NAME)$(RESET) $(GRAY)terminé$(RESET) 🚮"
-
-#--------------------------------------------#
-cook: all clean
-	@echo "🍴 $(BOLD)$(PURPLE)On cook$(RESET) 🍴"
-#--------------------------------------------#
+	rm -f $(NAME) $(LIBFT)
+	$(MAKE) $(LIBFT_PATH) fclean
+	$(MAKE) $(FT_FPRINTF_PATH) fclean
+	$(MAKE) $(MLX_PATH) clean
 
 re: fclean all
 
