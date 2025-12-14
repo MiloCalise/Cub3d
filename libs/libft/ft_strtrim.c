@@ -38,7 +38,7 @@ static size_t	size_calc(char const *s1, char const *set)
 	if (j == i)
 		return (0);
 	j--;
-	while (check_char(set, s1[j]) && j >= 0)
+	while (check_char(set, s1[j]))
 		j--;
 	j++;
 	return (j - i);

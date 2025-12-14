@@ -37,11 +37,9 @@ static int	size_calc(int n)
 
 static void	write_tab(char *str, int n, int size)
 {
-	size_t			i;
 	unsigned int	nb;
 	unsigned int	size_2;
 
-	i = 0;
 	size_2 = size - 1;
 	if (n == 0)
 	{
