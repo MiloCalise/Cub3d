@@ -15,15 +15,27 @@
 int	exit_game(t_game *game)
 {
 	free_all(game);
-	exit (0);
+	exit(0);
 	return (0);
+}
+
+// fonction qui permet d'afficher la minimap
+void	handle_minimap_keys(int keycode, t_game *game)
+{
+	if (keycode == XK_m)
+		game->ray->minimap_on = !game->ray->minimap_on;
+	else if (keycode == XK_equal || keycode == XK_plus)
+		game->ray->minimap_scale += 1;
+	else if (keycode == XK_minus)
+	{
+		game->ray->minimap_scale -= 1;
+		if (game->ray->minimap_scale < 1)
+			game->ray->minimap_scale = 1;
+	}
 }
 
 int	keys(int keycode, t_game *game)
 {
-	game->coll_margin = 0.4;
-	game->move_speed = 0.1;
-	game->rot_speed = 0.03;
 	if (keycode == XK_Escape)
 		exit_game(game);
 	else if (keycode == XK_w)
@@ -38,5 +50,7 @@ int	keys(int keycode, t_game *game)
 		rotate_left(game, game->rot_speed);
 	else if (keycode == XK_Right)
 		rotate_right(game, game->rot_speed);
+	else
+		handle_minimap_keys(keycode, game);
 	return (0);
 }

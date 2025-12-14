@@ -12,26 +12,46 @@
 
 #include "../../includes/cub3D.h"
 
-int	game_loop(t_game *g)
+// meilleure gestion des fps, comme ca si on a juste besoin
+// d'afficher les fps dans un autre truc on a juste à importer
+// cette fonction ailleur, et ca nous permet d'avoir un code
+// plus modulable
+void	calc_fps(t_game *g)
 {
-	double	current_time;
 	char	*fps;
 
-	gettimeofday(&g->time, NULL);
-	current_time = g->time.tv_sec + g->time.tv_usec / 1000000.0;
-	g->frame_time = current_time - g->old_time;
-	g->old_time = current_time;
-	dda(g);
 	if (g->frame_time > 0.0001)
 		g->fps = (int)(1.0 / g->frame_time);
 	else
 		g->fps = 0;
 	fps = ft_itoa(g->fps);
 	if (!fps)
-		return (0);
+		return ;
 	mlx_string_put(g->gptr, g->win, 10, 20, 0xFFFFFF, fps);
 	free(fps);
+}
+
+int	game_loop(t_game *g)
+{
+	double	current_time;
+
+	gettimeofday(&g->time, NULL);
+	current_time = g->time.tv_sec + g->time.tv_usec / 1000000.0;
+	g->frame_time = current_time - g->old_time;
+	g->old_time = current_time;
+	dda(g);
+	draw_minimap(g);
+	mlx_put_image_to_window(g->gptr, g->win, g->main.img, 0, 0);
+	calc_fps(g);
 	return (0);
+}
+
+// initialisation des variables pour la map en 2D
+void	init_minimap(t_game *game)
+{
+	game->ray->minimap_on = 1;
+	game->ray->minimap_scale = 10;
+	game->ray->minimap_margin = 10;
 }
 
 int	game_init(t_game *game)
@@ -45,6 +65,7 @@ int	game_init(t_game *game)
 		return (free_all(game), 1);
 	if (game_load(game) == 1)
 		return (free_all(game), 1);
+	init_minimap(game);
 	mlx_hook(game->win, 2, 1L, keys, game);
 	mlx_hook(game->win, 17, 0L, exit_game, game);
 	mlx_loop_hook(game->gptr, game_loop, game);

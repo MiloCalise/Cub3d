@@ -33,7 +33,8 @@ SRCS = srcs/main.c \
 		srcs/images/pixels.c \
 		srcs/images/textures.c \
 		srcs/game/dda.c \
-		srcs/game/dda_utils.c
+		srcs/game/dda_utils.c\
+		srcs/mini_map/mini_map.c \
 
 
 BOLD = \e[1m

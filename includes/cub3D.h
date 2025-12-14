@@ -71,6 +71,11 @@ typedef struct s_ray
 	double			step;
 	double			texpos;
 
+	// c'est pour la minimap
+	int		minimap_on;
+	int		minimap_scale;
+	int		minimap_margin;
+
 }					t_ray;
 
 typedef struct s_game
@@ -160,5 +165,9 @@ void	free_all(t_game *game);
 void	free_split(char **split);
 
 int		is_whitespace(char c);
+
+/* >>>>> bonus <<<<< */
+// ----> gestion mini map:
+void	draw_minimap(t_game *g);
 
 #endif
