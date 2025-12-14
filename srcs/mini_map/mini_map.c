@@ -1,8 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: molapoug <molapoug@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/31 11:47:47 by molapoug          #+#    #+#             */
+/*   Updated: 2025/11/11 13:54:55 by molapoug         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-/*
-** Dessine le joueur (point rouge) au centre du radar
-*/
+// Dessine le joueur (point rouge) au centre du radar
 static void	draw_player_icon(t_game *g, int c_x, int c_y)
 {
 	int	i;
@@ -22,7 +32,8 @@ static void	draw_player_icon(t_game *g, int c_x, int c_y)
 }
 
 // affiche la couleur du bloc dans la position du Monde en "w_x" et "w_y"
-// si on sort de la map on va afficher du NOIR (0x000000), si tu veux changer les couleurs je t'ai mis le code couleur
+// si on sort de la map on va afficher du NOIR (0x000000)
+// si tu veux changer les couleurs je t'ai mis le code couleur
 // quand on crois un mur -> GRIS CLAIR (0x808080)
 // quand c'est le sol -> GRIS FONCÉ (0x303030)
 int	get_radar_color(t_game *g, double w_x, double w_y)

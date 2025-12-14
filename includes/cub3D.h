@@ -71,6 +71,11 @@ typedef struct s_ray
 	double			step;
 	double			texpos;
 
+  float       pos_z;
+  float       row_dist;
+  //float       step[2];
+  float       floor[2];
+
 	// c'est pour la minimap
 	int		minimap_on;
 	int		minimap_scale;
@@ -95,6 +100,7 @@ typedef struct s_game
 	int				player_x;
 	int				player_y;
 	int				fps;
+  int       color;
 
 	double			coll_margin;
 	double			move_speed;
@@ -142,6 +148,7 @@ void	step_calc(t_game *game, t_tex *tex);
 void	pixel_loop(t_game *game, t_tex *tex, int *color, int x);
 void	rotate_right(t_game *g, double angle);
 void	rotate_left(t_game *g, double angle);
+void  draw_textured_background(t_game *g);
 
 t_tex	*wall_select(t_game *game);
 

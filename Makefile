@@ -35,6 +35,7 @@ SRCS = srcs/main.c \
 		srcs/game/dda.c \
 		srcs/game/dda_utils.c\
 		srcs/mini_map/mini_map.c \
+		srcs/background/background.c \
 
 
 BOLD = \e[1m
