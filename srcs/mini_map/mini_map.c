@@ -21,7 +21,6 @@ static void	draw_player_icon(t_game *g, int c_x, int c_y)
 	}
 }
 
-
 // affiche la couleur du bloc dans la position du Monde en "w_x" et "w_y"
 // si on sort de la map on va afficher du NOIR (0x000000), si tu veux changer les couleurs je t'ai mis le code couleur
 // quand on crois un mur -> GRIS CLAIR (0x808080)
@@ -56,8 +55,8 @@ void	draw_radar_circle(t_game *g, int r, int cx, int cy)
 	int		dist_sq;
 	double	src[2];
 
-	y = -r;
-	while (y <= r)
+	y = -r - 1;
+	while (++y <= r)
 	{
 		x = -r;
 		while (x <= r)
@@ -75,7 +74,6 @@ void	draw_radar_circle(t_game *g, int r, int cx, int cy)
 			}
 			x++;
 		}
-		y++;
 	}
 }
 
