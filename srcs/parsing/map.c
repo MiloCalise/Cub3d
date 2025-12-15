@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:07:11 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/11 12:35:25 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/12/15 14:40:42 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	map(int fd, t_game *game)
 	if (!game)
 		return (perror(NULL), 1);
 	1 && (game->map_size = 0, temp = get_next_line(fd));
-	temp = skip_space(fd, temp);
+	skip_space(fd, &temp);
 	while (temp && i < 100)
 	{
 		len = ft_strlen(temp);

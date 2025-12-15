@@ -6,11 +6,24 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:11:39 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/10 12:38:51 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/12/15 14:40:08 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
+void	skip_whitespaces(char *s, int *i)
+{
+	if (!s || !s[*i])
+		return ;
+	while (s[*i])
+	{
+		if (is_whitespace(s[*i]))
+			(*i)++;
+		else
+			return ;
+	}
+}
 
 int	is_whitespace(char c)
 {
@@ -34,16 +47,17 @@ int	check_c(char *s)
 	return (0);
 }
 
-char	*skip_space(int fd, char *temp)
+void	skip_space(int fd, char **temp)
 {
-	while (temp)
+	if (!temp || !*temp)
+		return ;
+	while (*temp)
 	{
-		if (check_c(temp))
-			return (temp);
-		free(temp);
-		temp = get_next_line(fd);
+		if (check_c(*temp))
+			return ;
+		free(*temp);
+		*temp = get_next_line(fd);
 	}
-	return (NULL);
 }
 
 int	is_invalid(char c)

@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:04:11 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/11 13:59:24 by molapoug         ###   ########.fr       */
+/*   Updated: 2025/12/15 13:44:17 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	game_loop(t_game *g)
 	current_time = g->time.tv_sec + g->time.tv_usec / 1000000.0;
 	g->frame_time = current_time - g->old_time;
 	g->old_time = current_time;
-  draw_textured_background(g);
+	//draw_textured_background(g);
 	dda(g);
-	draw_minimap(g);
+	//draw_minimap(g);
 	mlx_put_image_to_window(g->gptr, g->win, g->main.img, 0, 0);
 	calc_fps(g);
 	return (0);
