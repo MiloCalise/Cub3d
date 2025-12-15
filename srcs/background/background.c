@@ -1,4 +1,16 @@
-#include "cub3D.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   background.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/15 16:43:41 by miltavar          #+#    #+#             */
+/*   Updated: 2025/12/15 17:01:26 by miltavar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/cub3D.h"
 
 static int	get_tex_color(t_tex *tex, int x, int y)
 {
@@ -6,44 +18,38 @@ static int	get_tex_color(t_tex *tex, int x, int y)
 	int		tex_x;
 	int		tex_y;
 
-	tex_x = x & (64 - 1); 
+	tex_x = x & (64 - 1);
 	tex_y = y & (64 - 1);
-	
 	dst = tex->addr + (tex_y * tex->line_len + tex_x * (tex->bpp / 8));
 	return (*(unsigned int *)dst);
 }
 
-static void	render_floor_line(t_game *g, int y, float ray_dir0[2], float ray_dir1[2])
+static void	render_floor_line(t_game *g, int y,
+	float ray_dir0[2], float ray_dir1[2])
 {
-	int		x;
-	int		p;
-	float	pos_z;
-	float	row_dist;
-	float	step[2];
-	float	floor[2];
-	int		color;
-	
-	p = y - g->scr_y / 2;
-	pos_z = 0.5 * g->scr_y;
-	row_dist = pos_z / p;
-	step[0] = row_dist * (ray_dir1[0] - ray_dir0[0]) / g->scr_x;
-	step[1] = row_dist * (ray_dir1[1] - ray_dir0[1]) / g->scr_x;
-	floor[0] = g->ray->pos_x + row_dist * ray_dir0[0];
-	floor[1] = g->ray->pos_y + row_dist * ray_dir0[1];
-	x = 0;
-	while (x < g->scr_x)
-	{
-		color = get_tex_color(&g->north, (int)(floor[0] * 64), (int)(floor[1] * 64));
-		put_pixel(g, x, y, color);
-		color = get_tex_color(&g->south, (int)(floor[0] * 64), (int)(floor[1] * 64)); 
-		put_pixel(g, x, g->scr_y - y - 1, color);
+	t_bg	bg;
 
-		floor[0] += step[0];
-		floor[1] += step[1];
-		x++;
+	bg.p = y - g->scr_y / 2;
+	bg.pos_z = 0.5 * g->scr_y;
+	bg.row_dist = bg.pos_z / bg.p;
+	bg.step[0] = bg.row_dist * (ray_dir1[0] - ray_dir0[0]) / g->scr_x;
+	bg.step[1] = bg.row_dist * (ray_dir1[1] - ray_dir0[1]) / g->scr_x;
+	bg.floor[0] = g->ray->pos_x + bg.row_dist * ray_dir0[0];
+	bg.floor[1] = g->ray->pos_y + bg.row_dist * ray_dir0[1];
+	bg.x = 0;
+	while (bg.x < g->scr_x)
+	{
+		bg.color = get_tex_color(&g->north, (int)(bg.floor[0] * 64),
+				(int)(bg.floor[1] * 64));
+		put_pixel(g, bg.x, y, bg.color);
+		bg.color = get_tex_color(&g->south, (int)(bg.floor[0] * 64),
+				(int)(bg.floor[1] * 64));
+		put_pixel(g, bg.x, g->scr_y - y - 1, bg.color);
+		bg.floor[0] += bg.step[0];
+		bg.floor[1] += bg.step[1];
+		bg.x++;
 	}
 }
-
 
 void	draw_textured_background(t_game *g)
 {

@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 13:04:08 by miltavar          #+#    #+#             */
-/*   Updated: 2025/12/15 16:30:20 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:42:48 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,22 @@ int	paths(int fd, t_game *game)
 {
 	char	*temp;
 
-	temp = get_next_line(fd);
-	skip_space(fd, &temp);
+	1 && (temp = get_next_line(fd), skip_space(fd, &temp), 0);
 	if (!temp)
 		return (get_next_line(-42), 1);
 	game->path_n = grab_path(temp, "NO");
 	free(temp);
-	temp = get_next_line(fd);
-	skip_space(fd, &temp);
+	1 && (temp = get_next_line(fd), skip_space(fd, &temp), 0);
 	if (!temp)
 		return (get_next_line(-42), 1);
 	game->path_s = grab_path(temp, "SO");
 	free(temp);
-	temp = get_next_line(fd);
-	skip_space(fd, &temp);
+	1 && (temp = get_next_line(fd), skip_space(fd, &temp), 0);
 	if (!temp)
 		return (get_next_line(-42), 1);
 	game->path_w = grab_path(temp, "WE");
 	free(temp);
-	temp = get_next_line(fd);
-	skip_space(fd, &temp);
+	1 && (temp = get_next_line(fd), skip_space(fd, &temp), 0);
 	if (!temp)
 		return (get_next_line(-42), 1);
 	game->path_e = grab_path(temp, "EA");

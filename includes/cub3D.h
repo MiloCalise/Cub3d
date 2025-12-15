@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:23:18 by miltavar          #+#    #+#             */
-/*   Updated: 2025/12/15 14:40:18 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:56:40 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@
 # include <fcntl.h>
 # include <stdarg.h>
 # include <sys/time.h>
+
+typedef struct s_bg
+{
+	int		x;
+	int		p;
+	int		color;
+	float	pos_z;
+	float	row_dist;
+	float	step[2];
+	float	floor[2];
+}			t_bg;
 
 typedef struct s_tex
 {
@@ -71,15 +82,13 @@ typedef struct s_ray
 	double			step;
 	double			texpos;
 
-  float       pos_z;
-  float       row_dist;
-  //float       step[2];
-  float       floor[2];
+	float			pos_z;
+	float			row_dist;
+	float			floor[2];
 
-	// c'est pour la minimap
-	int		minimap_on;
-	int		minimap_scale;
-	int		minimap_margin;
+	int				minimap_on;
+	int				minimap_scale;
+	int				minimap_margin;
 
 }					t_ray;
 
@@ -100,7 +109,7 @@ typedef struct s_game
 	int				player_x;
 	int				player_y;
 	int				fps;
-  int       color;
+	int				color;
 
 	double			coll_margin;
 	double			move_speed;
@@ -147,9 +156,7 @@ void	dda(t_game *game);
 void	put_pixel(t_game *game, int x, int y, int color);
 void	step_calc(t_game *game, t_tex *tex);
 void	pixel_loop(t_game *game, t_tex *tex, int *color, int x);
-void	rotate_right(t_game *g, double angle);
-void	rotate_left(t_game *g, double angle);
-void  draw_textured_background(t_game *g);
+void	draw_textured_background(t_game *g);
 
 t_tex	*wall_select(t_game *game);
 
@@ -159,8 +166,8 @@ void	move_forward(t_game *game);
 void	move_backward(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
-void	look_left(t_game *game);
-void	look_right(t_game *game);
+void	rotate_right(t_game *g, double angle);
+void	rotate_left(t_game *g, double angle);
 
 /* hooks */
 
