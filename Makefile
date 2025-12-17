@@ -12,7 +12,7 @@
 
 NAME		= cub3D
 CC			= cc
-CFLAGS		= -g3 -Wall -Wextra -Werror -Ilibs/libft/includes -Ilibs/ft_fprintf -Iincludes -Imlx
+CFLAGS		= -g3 -Ilibs/libft/includes -Ilibs/ft_fprintf -Iincludes -Imlx
 MLXFLAGS 	= -Lmlx -lmlx_Linux -lXext -lX11 -lm
 
 MAKE = make -s -C
@@ -36,6 +36,7 @@ SRCS = srcs/main.c \
 		srcs/game/dda_utils.c\
 		srcs/mini_map/mini_map.c \
 		srcs/background/background.c \
+		srcs/images/textures_bonus.c \
 
 
 BOLD = \e[1m

@@ -128,6 +128,12 @@ typedef struct s_game
 	t_tex			west;
 	t_tex			main;
 
+	//texture du bg sky et floor
+	t_tex			floor;
+    t_tex			ciel;
+	float			ray_dir0[2];
+    float			ray_dir1[2];
+
 	t_ray			*ray;
 
 }					t_game;
@@ -157,6 +163,7 @@ void	put_pixel(t_game *game, int x, int y, int color);
 void	step_calc(t_game *game, t_tex *tex);
 void	pixel_loop(t_game *game, t_tex *tex, int *color, int x);
 void	draw_textured_background(t_game *g);
+void	load_textures(t_game *g);
 
 t_tex	*wall_select(t_game *game);
 

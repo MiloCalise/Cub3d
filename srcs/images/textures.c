@@ -89,5 +89,6 @@ int	game_load(t_game *g)
 		return (1);
 	if (west_img(g) == 1)
 		return (1);
+	load_textures(g);
 	return (0);
 }

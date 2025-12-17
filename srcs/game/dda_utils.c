@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:02:06 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/11 12:30:18 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/12/16 12:30:18 by molapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,15 @@ void	pixel_loop(t_game *g, t_tex *tex, int *color, int x)
 {
 	int	y;
 
-	y = 0;
-	while (y < g->scr_y)
+	y = g->ray->draw_start;
+	while (y <= g->ray->draw_end)
 	{
-		if (y < g->ray->draw_start)
-			put_pixel(g, x, y, g->top_clr);
-		else if (y > g->ray->draw_end)
-			put_pixel(g, x, y, g->floor_clr);
-		else
+		g->ray->text_y = (int)g->ray->texpos % tex->y;
+		if (g->ray->text_y < 0)
+			g->ray->text_y += tex->y;
+		g->ray->texpos += g->ray->step;
+		if (tex->addr)
 		{
-			g->ray->text_y = (int)g->ray->texpos % tex->y;
-			if (g->ray->text_y < 0)
-				g->ray->text_y += tex->y;
-			g->ray->texpos += g->ray->step;
 			*color = *(unsigned int *)(tex->addr + g->ray->text_y
 					* tex->line_len + g->ray->text_x * (tex->bpp / 8));
 			put_pixel(g, x, y, *color);
