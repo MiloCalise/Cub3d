@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixels.c                                           :+:      :+:    :+:   */
+/*   textures_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: molapoug <molapoug@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:35:48 by molapoug          #+#    #+#             */
-/*   Updated: 2025/12/13 21:53:47 by molapoug         ###   ########.fr       */
+/*   Updated: 2025/12/22 14:54:24 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	load_xpm(t_game *g, t_tex *tex, char *path)
 		printf("Error\nCannot load texture: %s\n", path);
 		exit_game(g);
 	}
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,\
-		&tex->line_len, &tex->endian);
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp,
+			&tex->line_len, &tex->endian);
 }
 
 void	load_textures(t_game *g)

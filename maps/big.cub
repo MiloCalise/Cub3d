@@ -1,7 +1,7 @@
-NO ./ressources/111.xpm
-SO ./ressources/222.xpm
-WE ./ressources/333.xpm
-EA ./ressources/444.xpm
+NO ./ressources/1.xpm
+SO ./ressources/2.xpm
+WE ./ressources/3.xpm
+EA ./ressources/4.xpm
 
 F 117,89,82
 C 46,192,240

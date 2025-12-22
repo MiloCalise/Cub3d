@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 16:28:55 by miltavar          #+#    #+#             */
-/*   Updated: 2025/12/15 16:28:11 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/12/22 14:32:42 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	south_img(t_game *g)
 		return (ft_putstr_fd("invalid map\n", 2), 1);
 	if (g->south.x > 256 || g->south.y > 256)
 		return (ft_putstr_fd("texture too large\n", 2), 1);
+	if (g->south.x != g->south.y)
+		return (ft_putstr_fd("texture format invalid\n", 2), 1);
 	g->south.addr = mlx_get_data_addr(g->south.img,
 			&g->south.bpp, &g->south.line_len, &g->south.endian);
 	if (!g->south.addr)
@@ -35,6 +37,8 @@ static int	east_img(t_game *g)
 		return (ft_putstr_fd("invalid map\n", 2), 1);
 	if (g->east.x > 256 || g->east.y > 256)
 		return (ft_putstr_fd("texture too large\n", 2), 1);
+	if (g->east.x != g->east.y)
+		return (ft_putstr_fd("texture format invalid\n", 2), 1);
 	g->east.addr = mlx_get_data_addr(g->east.img, &g->east.bpp,
 			&g->east.line_len, &g->east.endian);
 	if (!g->east.addr)
@@ -50,6 +54,8 @@ static int	west_img(t_game *g)
 		return (ft_putstr_fd("invalid map\n", 2), 1);
 	if (g->west.x > 256 || g->west.y > 256)
 		return (ft_putstr_fd("texture too large\n", 2), 1);
+	if (g->west.x != g->west.y)
+		return (ft_putstr_fd("texture format invalid\n", 2), 1);
 	g->west.addr = mlx_get_data_addr(g->west.img, &g->west.bpp,
 			&g->west.line_len, &g->west.endian);
 	if (!g->west.addr)
@@ -65,6 +71,8 @@ static int	north_img(t_game *g)
 		return (ft_putstr_fd("invalid map\n", 2), 1);
 	if (g->north.x > 256 || g->north.y > 256)
 		return (ft_putstr_fd("texture too large\n", 2), 1);
+	if (g->north.x != g->north.y)
+		return (ft_putstr_fd("texture format invalid\n", 2), 1);
 	g->north.addr = mlx_get_data_addr(g->north.img, &g->north.bpp,
 			&g->north.line_len, &g->north.endian);
 	if (!g->north.addr)
