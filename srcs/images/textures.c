@@ -6,13 +6,13 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 16:28:55 by miltavar          #+#    #+#             */
-/*   Updated: 2025/12/22 14:32:42 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/12/22 15:57:03 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static int	south_img(t_game *g)
+int	south_img(t_game *g)
 {
 	g->south.img = mlx_xpm_file_to_image(g->gptr, g->path_s,
 			&g->south.x, &g->south.y);
@@ -29,7 +29,7 @@ static int	south_img(t_game *g)
 	return (0);
 }
 
-static int	east_img(t_game *g)
+int	east_img(t_game *g)
 {
 	g->east.img = mlx_xpm_file_to_image(g->gptr, g->path_e,
 			&g->east.x, &g->east.y);
@@ -46,7 +46,7 @@ static int	east_img(t_game *g)
 	return (0);
 }
 
-static int	west_img(t_game *g)
+int	west_img(t_game *g)
 {
 	g->west.img = mlx_xpm_file_to_image(g->gptr, g->path_w,
 			&g->west.x, &g->west.y);
@@ -63,7 +63,7 @@ static int	west_img(t_game *g)
 	return (0);
 }
 
-static int	north_img(t_game *g)
+int	north_img(t_game *g)
 {
 	g->north.img = mlx_xpm_file_to_image(g->gptr, g->path_n,
 			&g->north.x, &g->north.y);
@@ -97,6 +97,5 @@ int	game_load(t_game *g)
 		return (1);
 	if (west_img(g) == 1)
 		return (1);
-	load_textures(g);
 	return (0);
 }

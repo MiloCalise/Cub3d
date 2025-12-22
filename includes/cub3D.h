@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:23:18 by miltavar          #+#    #+#             */
-/*   Updated: 2025/12/15 16:56:40 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:09:46 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,10 @@ typedef struct s_game
 	t_tex			west;
 	t_tex			main;
 
-	//texture du bg sky et floor
 	t_tex			floor;
-    t_tex			ciel;
+	t_tex			ciel;
 	float			ray_dir0[2];
-    float			ray_dir1[2];
+	float			ray_dir1[2];
 
 	t_ray			*ray;
 
@@ -158,6 +157,15 @@ int		game_init(t_game *game);
 int		game_load(t_game *game);
 int		game_loop(t_game *g);
 
+/* game bonus */
+int		game_loop_bonus(t_game *g);
+int		game_init_bonus(t_game *game);
+
+void	init_minimap(t_game *game);
+void	calc_fps(t_game *g);
+void	dda_bonus(t_game *g);
+void	pixel_loop_bonus(t_game *g, t_tex *tex, int *color, int x);
+void	draw_minimap(t_game *g);
 void	dda(t_game *game);
 void	put_pixel(t_game *game, int x, int y, int color);
 void	step_calc(t_game *game, t_tex *tex);
@@ -166,6 +174,18 @@ void	draw_textured_background(t_game *g);
 void	load_textures(t_game *g);
 
 t_tex	*wall_select(t_game *game);
+
+/* dda */
+void	ray_direction(t_game *g, int x);
+void	ray_direction2(t_game *g);
+void	hit_loop(t_game *g);
+void	wall_calc(t_game *g);
+
+/* textures */
+int		south_img(t_game *g);
+int		east_img(t_game *g);
+int		west_img(t_game *g);
+int		north_img(t_game *g);
 
 /* movement */
 
@@ -187,9 +207,5 @@ void	free_all(t_game *game);
 void	free_split(char **split);
 
 int		is_whitespace(char c);
-
-/* >>>>> bonus <<<<< */
-// ----> gestion mini map:
-void	draw_minimap(t_game *g);
 
 #endif

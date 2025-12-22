@@ -6,13 +6,13 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 12:40:41 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/11 12:28:26 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/12/22 15:29:58 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static void	ray_direction(t_game *g, int x)
+void	ray_direction(t_game *g, int x)
 {
 	g->ray->camera_x = 2 * x / (double)g->scr_x - 1;
 	g->ray->ray_dir_x = g->ray->dir_x + g->ray->plane_x * g->ray->camera_x;
@@ -29,7 +29,7 @@ static void	ray_direction(t_game *g, int x)
 		g->ray->delta_dist_y = fabs(1 / g->ray->ray_dir_y);
 }
 
-static void	ray_direction2(t_game *g)
+void	ray_direction2(t_game *g)
 {
 	if (g->ray->ray_dir_x < 0)
 	{
@@ -57,7 +57,7 @@ static void	ray_direction2(t_game *g)
 	}
 }
 
-static void	hit_loop(t_game *g)
+void	hit_loop(t_game *g)
 {
 	int	hit;
 
@@ -84,7 +84,7 @@ static void	hit_loop(t_game *g)
 	}
 }
 
-static void	wall_calc(t_game *g)
+void	wall_calc(t_game *g)
 {
 	if (g->ray->side == 0)
 		g->ray->wall_dist = (g->ray->side_dist_x - g->ray->delta_dist_x);

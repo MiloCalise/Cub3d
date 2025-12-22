@@ -6,7 +6,7 @@
 #    By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/30 16:11:53 by miltavar          #+#    #+#              #
-#    Updated: 2025/11/11 12:38:45 by miltavar         ###   ########.fr        #
+#    Updated: 2025/12/22 15:41:29 by miltavar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ MAKE = make -s -C
 
 SRCS = srcs/main.c \
 		srcs/game/game_init.c \
+		srcs/game/game_init_bonus.c \
 		srcs/utils/common_utils.c \
 		srcs/hooks/movement.c \
 		srcs/hooks/look.c \
@@ -33,11 +34,11 @@ SRCS = srcs/main.c \
 		srcs/images/pixels.c \
 		srcs/images/textures.c \
 		srcs/game/dda.c \
+		srcs/game/dda_bonus.c \
 		srcs/game/dda_utils.c\
 		srcs/mini_map/mini_map.c \
 		srcs/background/background.c \
 		srcs/images/textures_bonus.c \
-
 
 BOLD = \e[1m
 GRAY = \e[30m

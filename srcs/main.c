@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:26:40 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/04 13:04:39 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:33:01 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_game	*game;
 
-	if (argc != 2)
+	if (argc != 3 && argc != 2)
 		return (ft_fprintf(2, "requires one argument in .cub format\n"), 1);
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
@@ -26,7 +26,15 @@ int	main(int argc, char **argv)
 		return (perror(NULL), free(game), 1);
 	if (parsing(game, argv[1]) == 1)
 		return (1);
-	if (game_init(game) == 1)
-		return (1);
+	if (argv[2] && ft_strncmp(argv[2], "--bonus", 7) == 0)
+	{
+		if (game_init_bonus(game) == 1)
+			return (1);
+	}
+	else
+	{
+		if (game_init(game) == 1)
+			return (1);
+	}
 	return (0);
 }

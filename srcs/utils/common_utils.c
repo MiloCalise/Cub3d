@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:41:57 by miltavar          #+#    #+#             */
-/*   Updated: 2025/11/06 13:07:58 by miltavar         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:05:30 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ static void	clean_images(t_game *game)
 		mlx_destroy_image(game->gptr, game->north.img);
 	if (game->main.img)
 		mlx_destroy_image(game->gptr, game->main.img);
+	if (game->ciel.img)
+		mlx_destroy_image(game->gptr, game->ciel.img);
+	if (game->floor.img)
+		mlx_destroy_image(game->gptr, game->floor.img);
 }
 
 void	free_all(t_game *game)

@@ -1,7 +1,7 @@
-NO ./ressources/1.xpm
-SO ./ressources/2.xpm
-WE ./ressources/3.xpm
-EA ./ressources/4.xpm
+NO ./ressources/north.xpm
+SO ./ressources/south.xpm
+WE ./ressources/west.xpm
+EA ./ressources/east.xpm
 
 F 117,89,82
 C 46,192,240

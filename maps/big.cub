@@ -1,7 +1,7 @@
-NO ./ressources/1.xpm
-SO ./ressources/2.xpm
-WE ./ressources/3.xpm
-EA ./ressources/4.xpm
+NO ./ressources/doom_north.xpm
+SO ./ressources/doom_south.xpm
+WE ./ressources/doom_west.xpm
+EA ./ressources/doom_east.xpm
 
 F 117,89,82
 C 46,192,240
