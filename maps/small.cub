@@ -1,12 +1,14 @@
-NO ./ressources/cat_north.xpm
-SO ./ressources/cat_south.xpm
-WE ./ressources/cat_west.xpm
-EA ./ressources/cat_east.xpm
-
 F 117,89,82
-C 46,192,240
+EA                ./ressources/cat_east.xpm
+NO ./ressources/cat_north.xpm
 
-11111
+
+SO ./ressources/cat_south.xpm
+C 46,192,       240
+WE ./ressources/cat_west.xpm
+
+
+ 111
 10001
  1N1
   1

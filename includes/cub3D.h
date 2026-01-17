@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:23:18 by miltavar          #+#    #+#             */
-/*   Updated: 2025/12/22 16:09:46 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:31:48 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,17 @@ typedef struct s_game
 
 	int				floor_clr;
 	int				top_clr;
+	int				t_clr[3];
+	int				f_clr[3];
 	int				scr_x;
 	int				scr_y;
 	int				map_size;
+	int				line_len;
 	int				player_x;
 	int				player_y;
 	int				fps;
 	int				color;
+	int				map_fd;
 
 	double			coll_margin;
 	double			move_speed;
@@ -145,11 +149,12 @@ void	flood_fill(t_game *game, int x, int y, char **copy);
 void	init_directions(t_game *game);
 
 int		parsing(t_game *game, char *arg);
-int		paths(int fd, t_game *game);
-int		colors(int fd, t_game *game);
-int		map(int fd, t_game *game);
+int		map(t_game *game);
 int		do_flood(t_game *game);
 int		is_invalid(char c);
+int		grab_colors(int tab[3], char *str, char *tofind);
+
+char	*grab_path(char *str, char *to_find);
 
 /* game */
 

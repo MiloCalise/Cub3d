@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:07:11 by miltavar          #+#    #+#             */
-/*   Updated: 2025/12/15 14:40:42 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/17 13:45:20 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,17 @@ int	check_line(char *s, int index, int max, t_game *game)
 int	copy_map(char **copy, t_game *game)
 {
 	int	i;
+	int	len;
 
 	i = 0;
+	game->line_len = 0;
 	while (game->map[i])
 	{
-		copy[i] = ft_strdup(game->map[i]);
+		len = ft_strlen(game->map[i]);
+		copy[i] = ft_calloc(len + 1, sizeof(char));
 		if (!copy[i])
-			return (perror(NULL), free_split(copy), 1);
+			return (1);
+		ft_strlcpy(copy[i], game->map[i], len + 1);
 		i++;
 	}
 	copy[i] = NULL;
@@ -89,7 +93,7 @@ int	do_flood(t_game *game)
 	return (free_split(copy), 0);
 }
 
-int	map(int fd, t_game *game)
+int	map(t_game *game)
 {
 	char		*temp;
 	int			i;
@@ -99,8 +103,8 @@ int	map(int fd, t_game *game)
 	game->map = ft_calloc(100, sizeof(char *));
 	if (!game)
 		return (perror(NULL), 1);
-	1 && (game->map_size = 0, temp = get_next_line(fd));
-	skip_space(fd, &temp);
+	1 && (game->map_size = 0, temp = get_next_line(game->map_fd));
+	skip_space(game->map_fd, &temp);
 	while (temp && i < 100)
 	{
 		len = ft_strlen(temp);
@@ -109,7 +113,8 @@ int	map(int fd, t_game *game)
 			return (get_next_line(-42), free(temp),
 				free_split(game->map), 1);
 		1 && (ft_strlcpy(game->map[i], temp, len),
-			free(temp), i++, temp = get_next_line(fd), game->map_size++);
+			free(temp), i++,
+			temp = get_next_line(game->map_fd), game->map_size++);
 	}
 	if (i >= 100 || i == 0)
 		return (free_split(game->map), get_next_line(-42), 1);

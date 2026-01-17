@@ -6,13 +6,13 @@
 #    By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/30 16:11:53 by miltavar          #+#    #+#              #
-#    Updated: 2025/12/22 15:41:29 by miltavar         ###   ########.fr        #
+#    Updated: 2026/01/13 13:23:29 by miltavar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= cub3D
 CC			= cc
-CFLAGS		= -g3 -Ilibs/libft/includes -Ilibs/ft_fprintf -Iincludes -Imlx
+CFLAGS		= -g3 -Wall -Werror -Wextra -Ilibs/libft/includes -Ilibs/ft_fprintf -Iincludes -Imlx
 MLXFLAGS 	= -Lmlx -lmlx_Linux -lXext -lX11 -lm
 
 MAKE = make -s -C
