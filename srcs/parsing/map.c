@@ -6,13 +6,13 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:07:11 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/17 13:45:20 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:47:05 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-int	check_line(char *s, int index, int max, t_game *game)
+int	check_line(char *s, int index, int max)
 {
 	int	i;
 
@@ -29,8 +29,6 @@ int	check_line(char *s, int index, int max, t_game *game)
 			if (s[i] != '1' && !is_whitespace(s[i]) && s[i] != '0'
 				&& s[i] != 'N' && s[i] != 'S' && s[i] != 'E' && s[i] != 'W')
 				return (1);
-			if (s[i] == 'N' || s[i] == 'S' || s[i] == 'W' || s[i] == 'E')
-				1 && (game->player_x = i, game->player_y = index);
 		}
 		i++;
 	}
@@ -62,17 +60,12 @@ int	map_check(t_game *game)
 	int	i;
 
 	i = 0;
-	game->player_x = -1;
 	while (game->map[i])
 	{
-		if (check_line(game->map[i], i, game->map_size, game) == 1)
+		if (check_line(game->map[i], i, game->map_size) == 1)
 			return (1);
 		i++;
 	}
-	if (game->player_x == -1)
-		return (1);
-	game->ray->pos_x = (double)game->player_x;
-	game->ray->pos_y = (double)game->player_y;
 	return (0);
 }
 
@@ -87,6 +80,8 @@ int	do_flood(t_game *game)
 		return (perror(NULL), 1);
 	if (copy_map(copy, game) == 1)
 		return (1);
+	if (check_dup(copy, game) == 1)
+		return (free_split(copy), 1);
 	flood_fill(game, game->player_x, game->player_y, copy);
 	if (game->player_x == -1)
 		return (free_split(copy), 1);

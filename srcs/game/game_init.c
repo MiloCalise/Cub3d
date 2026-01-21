@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:04:11 by miltavar          #+#    #+#             */
-/*   Updated: 2025/12/22 16:08:30 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/21 13:24:18 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	game_init(t_game *game)
 {
 	game->gptr = mlx_init();
 	if (!game->gptr)
-		return (free_all(game), 1);
+		return (free_all(game), ft_putstr_fd("Failed to init mlx\n", 2), 1);
 	mlx_get_screen_size(game->gptr, &game->scr_x, &game->scr_y);
 	game->win = mlx_new_window(game->gptr, game->scr_x, game->scr_y, "Cub3D");
 	if (!game->win)

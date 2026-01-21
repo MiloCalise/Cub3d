@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:23:18 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/15 16:31:48 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:43:41 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void	flood_fill(t_game *game, int x, int y, char **copy);
 void	init_directions(t_game *game);
 
 int		parsing(t_game *game, char *arg);
+int		check_dup(char **copy, t_game *game);
 int		map(t_game *game);
 int		do_flood(t_game *game);
 int		is_invalid(char c);
