@@ -6,30 +6,22 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:07:11 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/21 17:47:05 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:23:04 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-int	check_line(char *s, int index, int max)
+int	check_line(char *s)
 {
 	int	i;
 
 	i = 0;
 	while (s[i])
 	{
-		if (index == 0 || index == max)
-		{
-			if (s[i] != '1' && !is_whitespace(s[i]))
-				return (1);
-		}
-		else
-		{
-			if (s[i] != '1' && !is_whitespace(s[i]) && s[i] != '0'
-				&& s[i] != 'N' && s[i] != 'S' && s[i] != 'E' && s[i] != 'W')
-				return (1);
-		}
+		if (s[i] != '1' && !is_whitespace(s[i]) && s[i] != '0'
+			&& s[i] != 'N' && s[i] != 'S' && s[i] != 'E' && s[i] != 'W')
+			return (1);
 		i++;
 	}
 	return (0);
@@ -62,7 +54,7 @@ int	map_check(t_game *game)
 	i = 0;
 	while (game->map[i])
 	{
-		if (check_line(game->map[i], i, game->map_size) == 1)
+		if (check_line(game->map[i]) == 1)
 			return (1);
 		i++;
 	}
