@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:23:18 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/21 17:43:41 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/28 16:17:15 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ typedef struct s_game
 void	skip_whitespaces(char *s, int *i);
 void	skip_space(int fd, char **temp);
 void	flood_fill(t_game *game, int x, int y, char **copy);
+void	flood_fill2(t_game *game, int x, int y, char **copy);
 void	init_directions(t_game *game);
 
 int		parsing(t_game *game, char *arg);

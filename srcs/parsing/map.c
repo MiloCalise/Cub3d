@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:07:11 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/27 17:23:04 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/28 17:32:09 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	check_line(char *s)
 	i = 0;
 	while (s[i])
 	{
+		if ((i == 0) && (s[i] != '1' && !is_whitespace(s[i])))
+			return (1);
 		if (s[i] != '1' && !is_whitespace(s[i]) && s[i] != '0'
 			&& s[i] != 'N' && s[i] != 'S' && s[i] != 'E' && s[i] != 'W')
 			return (1);
@@ -64,7 +66,9 @@ int	map_check(t_game *game)
 int	do_flood(t_game *game)
 {
 	char	**copy;
+	int		i;
 
+	i = 0;
 	if (map_check(game) == 1)
 		return (1);
 	copy = ft_calloc(game->map_size + 1, sizeof(char *));
@@ -74,7 +78,9 @@ int	do_flood(t_game *game)
 		return (1);
 	if (check_dup(copy, game) == 1)
 		return (free_split(copy), 1);
-	flood_fill(game, game->player_x, game->player_y, copy);
+	skip_whitespaces(copy[game->player_y], &i);
+	flood_fill(game, i, game->player_y, copy);
+	flood_fill2(game, game->player_x, game->player_y, copy);
 	if (game->player_x == -1)
 		return (free_split(copy), 1);
 	return (free_split(copy), 0);

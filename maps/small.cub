@@ -7,11 +7,10 @@ SO ./ressources/cat_south.xpm
 C 46,192,       240
 WE ./ressources/cat_west.xpm
 
+000
 
- 111
-  00000
-
- 111
-10001
- 1N1
-  1
+ 1
+101
+101
+1N1
+ 1
