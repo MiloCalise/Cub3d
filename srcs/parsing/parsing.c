@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:31:21 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/31 15:52:12 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/31 16:01:50 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	parse_delim(char delim[2], t_game *game, char *temp)
 		game->path_w = grab_path(temp, delim);
 	else if (delim[0] == 'E' && delim[1] == 'A')
 		game->path_e = grab_path(temp, delim);
-	else if (delim[0] == 'F' && is_whitespace(delim[1]))
+	else if (delim[0] == 'F' && (delim[1] == ' ' || delim[1] == '\t'))
 	{
 		if (grab_colors(game->f_clr, temp, delim))
 			return (1);
 		game->floor_clr = (game->f_clr[0] << 16)
 			| (game->f_clr[1] << 8) | game->f_clr[2];
 	}
-	else if (delim[0] == 'C' && is_whitespace(delim[1]))
+	else if (delim[0] == 'C' && (delim[1] == ' ' || delim[1] == '\t'))
 	{
 		if (grab_colors(game->t_clr, temp, delim))
 			return (1);
@@ -58,7 +58,7 @@ int	distributor(t_game *game)
 		1 && (i = 0, count++, skip_whitespaces(temp, &i),
 			delim[0] = temp[i], i++);
 		if (!temp[i])
-			return (get_next_line(-42), 1);
+			return (get_next_line(-42), free(temp), 1);
 		delim[1] = temp[i];
 		if (parse_delim(delim, game, temp))
 			return (get_next_line(-42), free(temp), 1);
