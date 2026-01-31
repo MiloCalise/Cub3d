@@ -4,7 +4,7 @@ NO ./ressources/cat_north.xpm
 
 
 SO ./ressources/cat_south.xpm
-C 46 ,  192,240
+C 46 ,  f192,240
 WE ./ressources/cat_west.xpm
 
 100

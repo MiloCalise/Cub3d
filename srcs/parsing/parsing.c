@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:31:21 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/17 13:47:43 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/31 15:52:12 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	distributor(t_game *game)
 			return (get_next_line(-42), 1);
 		delim[1] = temp[i];
 		if (parse_delim(delim, game, temp))
-			return (get_next_line(-42), 1);
+			return (get_next_line(-42), free(temp), 1);
 		free(temp);
 		if (count != 6)
 			1 && (temp = get_next_line(game->map_fd),
