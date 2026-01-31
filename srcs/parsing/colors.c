@@ -6,11 +6,27 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:02:12 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/15 16:28:39 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/31 12:53:02 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
+static int	check_rgb(char *s)
+{
+	int	i;
+
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]) && !is_whitespace(s[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 static int	parse_rgb_value(char *str, int *start, int *tab, int index)
 {
@@ -18,11 +34,13 @@ static int	parse_rgb_value(char *str, int *start, int *tab, int index)
 	int		len;
 
 	len = *start;
-	while (str[*start] && ft_isdigit(str[*start]))
+	while (str[*start] && str[*start] != ',')
 		(*start)++;
 	s = ft_substr(str, len, *start - len);
 	if (!s)
 		return (get_next_line(-42), 1);
+	if (check_rgb(s))
+		return (get_next_line(-42), free(s), 1);
 	tab[index] = ft_atoi(s);
 	if (tab[index] < 0 || tab[index] > 255)
 		return (get_next_line(-42), free(s), 1);
