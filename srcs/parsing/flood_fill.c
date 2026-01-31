@@ -6,11 +6,21 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:37:08 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/29 12:52:09 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/31 16:49:24 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
+int	return_split(t_game *game, int i)
+{
+	if (i == 0)
+		return (get_next_line(-42), 1);
+	else if (i >= 100)
+		return (get_next_line(-42), free_split(game->map), 1);
+	else
+		return (game->map[i] = NULL, 0);
+}
 
 int	check_dup(char **copy, t_game *game)
 {

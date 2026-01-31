@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:07:11 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/31 16:05:15 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/01/31 16:26:12 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,5 @@ int	map(t_game *game)
 			free(temp), i++,
 			temp = get_next_line(game->map_fd), game->map_size++);
 	}
-	if (i >= 100 || i == 0)
-	{
-		if (i >= 100)
-			return (free_split(game->map), get_next_line(-42), 1);
-		return (get_next_line(-42), 1);
-	}
-	return (game->map[i] = NULL, 0);
+	return (return_split(game, i));
 }
