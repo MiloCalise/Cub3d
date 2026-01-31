@@ -43,7 +43,7 @@ int	check_dup(char **copy, t_game *game)
 
 void	flood_fill(t_game *game, int x, int y, char **copy)
 {
-	if (x < 0 || y < 0 || y >= game->map_size)
+	if (x < 0 || y < 0 || y >= game->map_size || x >= (int)ft_strlen(copy[y]))
 		return ;
 	if (!copy[y][x] || is_whitespace(copy[y][x]))
 	{
