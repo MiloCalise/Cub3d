@@ -150,7 +150,7 @@ void	init_directions(t_game *game);
 
 int		parsing(t_game *game, char *arg);
 int		check_dup(char **copy, t_game *game);
-int		map(t_game *game);
+int		map(t_game *g);
 int		do_flood(t_game *game);
 int		is_invalid(char c);
 int		grab_colors(int tab[3], char *str, char *tofind);

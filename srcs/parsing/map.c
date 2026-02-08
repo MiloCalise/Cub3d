@@ -82,28 +82,31 @@ int	do_flood(t_game *game)
 	return (free_split(copy), 0);
 }
 
-int	map(t_game *game)
+int	map(t_game *g)
 {
 	char		*temp;
 	int			i;
 	size_t		len;
 
-	i = 0;
-	game->map = ft_calloc(100, sizeof(char *));
-	if (!game)
+	1 && (i = 0, g->map = ft_calloc(100, sizeof(char *)));
+	if (!g)
 		return (perror(NULL), 1);
-	1 && (game->map_size = 0, temp = get_next_line(game->map_fd));
-	skip_space(game->map_fd, &temp);
+	1 && (g->map_size = 0, temp = get_next_line(g->map_fd));
+	skip_space(g->map_fd, &temp);
 	while (temp && i < 100)
 	{
-		len = ft_strlen(temp);
-		game->map[i] = ft_calloc(len, sizeof(char));
-		if (!game->map[i])
-			return (get_next_line(-42), free(temp),
-				free_split(game->map), 1);
-		1 && (ft_strlcpy(game->map[i], temp, len),
+		1 && (len = ft_strlen(temp), g->map[i] = ft_calloc(len, sizeof(char)));
+		if (!g->map[i])
+			return (get_next_line(-42), free(temp), free_split(g->map), 1);
+		1 && (ft_strlcpy(g->map[i], temp, len),
 			free(temp), i++,
-			temp = get_next_line(game->map_fd), game->map_size++);
+			temp = get_next_line(g->map_fd), g->map_size++);
 	}
-	return (return_split(game, i));
+	if (i >= 100 || i == 0)
+	{
+		if (i >= 100)
+			return (free_split(g->map), get_next_line(-42), 1);
+		return (get_next_line(-42), 1);
+	}
+	return (g->map[i] = NULL, 0);
 }
