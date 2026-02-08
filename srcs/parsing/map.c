@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:07:11 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/31 16:26:12 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/08 15:04:36 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,27 @@ int	check_line(char *s)
 int	copy_map(char **copy, t_game *game)
 {
 	int	i;
-	int	len;
+	int	y;
 
 	i = 0;
-	game->line_len = 0;
-	while (game->map[i])
+	y = 0;
+	copy[i] = fill(game);
+	if (!copy[i])
+		return (1);
+	i++;
+	while (game->map[y])
 	{
-		len = ft_strlen(game->map[i]);
-		copy[i] = ft_calloc(len + 1, sizeof(char));
+		copy[i] = ft_calloc(game->max_len + 1, sizeof(char));
 		if (!copy[i])
 			return (1);
-		ft_strlcpy(copy[i], game->map[i], len + 1);
+		fill_line(copy[i], game, y);
+		y++;
 		i++;
 	}
+	copy[i] = fill(game);
+	if (!copy[i])
+		return (1);
+	i++;
 	copy[i] = NULL;
 	return (0);
 }
@@ -56,6 +64,8 @@ int	map_check(t_game *game)
 	i = 0;
 	while (game->map[i])
 	{
+		if (all_whitespace(game->map[i]) == 1)
+			return (1);
 		if (check_line(game->map[i]) == 1)
 			return (1);
 		i++;
@@ -69,12 +79,13 @@ int	do_flood(t_game *game)
 
 	if (map_check(game) == 1)
 		return (1);
-	copy = ft_calloc(game->map_size + 1, sizeof(char *));
+	if (check_dup(game) == 1)
+		return (1);
+	copy = ft_calloc(game->map_size + 3, sizeof(char *));
 	if (!copy)
 		return (perror(NULL), 1);
+	get_max(game);
 	if (copy_map(copy, game) == 1)
-		return (1);
-	if (check_dup(copy, game) == 1)
 		return (free_split(copy), 1);
 	flood_fill(game, game->player_x, game->player_y, copy);
 	if (game->player_x == -1)

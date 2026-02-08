@@ -6,39 +6,43 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:37:08 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/31 16:49:24 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/08 15:03:39 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-int	return_split(t_game *game, int i)
+void	get_max(t_game *game)
 {
-	if (i == 0)
-		return (get_next_line(-42), 1);
-	else if (i >= 100)
-		return (get_next_line(-42), free_split(game->map), 1);
-	else
-		return (game->map[i] = NULL, 0);
+	int		i;
+	size_t	len;
+
+	i = 0;
+	game->max_len = 0;
+	while (game->map[i])
+	{
+		len = ft_strlen(game->map[i]);
+		if (len > (size_t)game->max_len)
+			game->max_len = len;
+		i++;
+	}
 }
 
-int	check_dup(char **copy, t_game *game)
+int	check_dup(t_game *game)
 {
 	int	i;
 	int	j;
 	int	count;
 
 	game->player_x = -1;
-	if (!copy)
-		return (1);
 	1 && (i = 0, count = 0);
-	while (copy[i])
+	while (game->map[i])
 	{
 		j = 0;
-		while (copy[i][j])
+		while (game->map[i][j])
 		{
-			if (copy[i][j] == 'N' || copy[i][j] == 'S'
-					|| copy[i][j] == 'E' || copy[i][j] == 'W')
+			if (game->map[i][j] == 'N' || game->map[i][j] == 'S'
+					|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
 				1 && (count++, game->player_x = j, game->player_y = i);
 			j++;
 		}
@@ -53,9 +57,9 @@ int	check_dup(char **copy, t_game *game)
 
 void	flood_fill(t_game *game, int x, int y, char **copy)
 {
-	if (x < 0 || y < 0 || y >= game->map_size || x >= (int)ft_strlen(copy[y]))
+	if (x < 0 || y < 0 || y >= game->map_size || x > (int)ft_strlen(copy[y]))
 		return ;
-	if (!copy[y][x] || is_whitespace(copy[y][x]))
+	if (!copy[y][x] || is_whitespace(copy[y][x]) || copy[y][x] == 'f')
 	{
 		game->player_x = -1;
 		return ;

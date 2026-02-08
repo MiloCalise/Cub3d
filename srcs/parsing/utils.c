@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:11:39 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/15 13:51:02 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/08 13:55:15 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	skip_whitespaces(char *s, int *i)
 
 int	is_whitespace(char c)
 {
-	if (c == ' ' || c == 9 || c == 10 || c == 11 || c == 12 || c == 13)
+	if (c <= 32)
 		return (1);
 	return (0);
 }

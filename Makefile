@@ -6,7 +6,7 @@
 #    By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/30 16:11:53 by miltavar          #+#    #+#              #
-#    Updated: 2026/01/13 13:23:29 by miltavar         ###   ########.fr        #
+#    Updated: 2026/02/08 14:21:20 by miltavar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS = srcs/main.c \
 		srcs/parsing/map.c \
 		srcs/parsing/utils.c \
 		srcs/parsing/player.c \
+		srcs/parsing/map_fill.c \
 		srcs/images/pixels.c \
 		srcs/images/textures.c \
 		srcs/game/dda.c \
