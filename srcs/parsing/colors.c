@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:02:12 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/31 12:53:02 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/09 16:05:49 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_rgb(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (!ft_isdigit(s[i]) && !is_whitespace(s[i]))
+		if (!ft_isdigit(s[i]))
 			return (1);
 		i++;
 	}
@@ -32,10 +32,15 @@ static int	parse_rgb_value(char *str, int *start, int *tab, int index)
 {
 	char	*s;
 	int		len;
+	int		i;
 
 	len = *start;
-	while (str[*start] && str[*start] != ',')
+	while (str[*start] && ft_isdigit(str[*start]))
 		(*start)++;
+	i = *start;
+	skip_whitespaces(str, &i);
+	if (str[i] && str[i] != ',')
+		return (get_next_line(-42), 1);
 	s = ft_substr(str, len, *start - len);
 	if (!s)
 		return (get_next_line(-42), 1);
@@ -44,22 +49,22 @@ static int	parse_rgb_value(char *str, int *start, int *tab, int index)
 	tab[index] = ft_atoi(s);
 	if (tab[index] < 0 || tab[index] > 255)
 		return (get_next_line(-42), free(s), 1);
-	free(s);
-	(*start)++;
-	return (0);
+	skip_whitespaces(str, start);
+	return (free(s), (*start)++, 0);
 }
 
 int	grab_colors(int tab[3], char *str, char *tofind)
 {
 	int	i;
 
-	if (!str)
-		return (1);
 	i = 0;
+	1 && (tab[0] = -1, tab[1] = -1, tab[2] = -1);
 	skip_whitespaces(str, &i);
-	if (ft_strncmp(str + i, tofind, 2) != 0)
+	if (ft_strncmp(str + i, tofind, 1) != 0)
 		return (1);
 	i++;
+	if (str[i] && str[i] == '\n')
+		return (1);
 	skip_whitespaces(str, &i);
 	if (parse_rgb_value(str, &i, tab, 0) == 1)
 		return (1);
@@ -68,6 +73,8 @@ int	grab_colors(int tab[3], char *str, char *tofind)
 		return (1);
 	skip_whitespaces(str, &i);
 	if (parse_rgb_value(str, &i, tab, 2) == 1)
+		return (1);
+	if (tab[0] == -1 || tab[1] == -1 || tab[2] == -1)
 		return (1);
 	return (0);
 }

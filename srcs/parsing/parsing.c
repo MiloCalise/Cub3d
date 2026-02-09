@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:31:21 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/08 13:24:05 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/09 16:20:14 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,30 @@
 
 int	parse_delim(char delim[2], t_game *game, char *temp)
 {
-	if (delim[0] == 'N' && delim[1] == 'O')
-		game->path_n = grab_path(temp, delim);
-	else if (delim[0] == 'S' && delim[1] == 'O')
-		game->path_s = grab_path(temp, delim);
-	else if (delim[0] == 'W' && delim[1] == 'E')
-		game->path_w = grab_path(temp, delim);
-	else if (delim[0] == 'E' && delim[1] == 'A')
-		game->path_e = grab_path(temp, delim);
-	else if (delim[0] == 'F' && (delim[1] == ' ' || delim[1] == '\t'))
+	static int	i = 0;
+	static int	y = 0;
+
+	if (delim[0] == 'F')
 	{
-		if (grab_colors(game->f_clr, temp, delim))
+		if (i > 0 || grab_colors(game->f_clr, temp, delim))
 			return (1);
 		game->floor_clr = (game->f_clr[0] << 16)
 			| (game->f_clr[1] << 8) | game->f_clr[2];
+		return (i++, 0);
 	}
-	else if (delim[0] == 'C' && (delim[1] == ' ' || delim[1] == '\t'))
+	else if (delim[0] == 'C')
 	{
-		if (grab_colors(game->t_clr, temp, delim))
+		if (y > 0 || grab_colors(game->t_clr, temp, delim))
 			return (1);
 		game->top_clr = (game->t_clr[0] << 16)
 			| (game->t_clr[1] << 8) | game->t_clr[2];
+		return (y++, 0);
 	}
-	else
+	if (paths_dir(delim, game, temp))
 		return (1);
-	return (0);
+	else
+		return (0);
+	return (1);
 }
 
 int	distributor(t_game *game)
@@ -95,9 +94,9 @@ int	check_name(char *arg)
 
 int	check_colors(t_game *game)
 {
-	if (game->top_clr == 0)
+	if (game->top_clr == -1)
 		return (1);
-	if (game->floor_clr == 0)
+	if (game->floor_clr == -1)
 		return (1);
 	return (0);
 }
@@ -106,8 +105,8 @@ int	parsing(t_game *game, char *arg)
 {
 	if (check_name(arg))
 		return (ft_putstr_fd("Invalid map type\n", 2), free_all(game), 1);
-	game->top_clr = 0;
-	game->floor_clr = 0;
+	game->top_clr = -1;
+	game->floor_clr = -1;
 	game->map_fd = open(arg, O_RDONLY);
 	if (game->map_fd == -1)
 		return (perror(NULL), free_all(game), 1);

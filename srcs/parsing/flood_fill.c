@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:37:08 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/08 15:03:39 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/09 16:19:30 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_dup(t_game *game)
 
 void	flood_fill(t_game *game, int x, int y, char **copy)
 {
-	if (x < 0 || y < 0 || y >= game->map_size || x > (int)ft_strlen(copy[y]))
+	if (x < 0 || y < 0 || y > game->map_size + 1 || x > (int)ft_strlen(copy[y]))
 		return ;
 	if (!copy[y][x] || is_whitespace(copy[y][x]) || copy[y][x] == 'f')
 	{

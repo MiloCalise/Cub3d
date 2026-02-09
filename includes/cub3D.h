@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:23:18 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/08 14:59:43 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/08 18:47:19 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ int		map(t_game *g);
 int		do_flood(t_game *game);
 int		is_invalid(char c);
 int		grab_colors(int tab[3], char *str, char *tofind);
+int		paths_dir(char delim[2], t_game *game, char *temp);
 
 char	*grab_path(char *str, char *to_find);
 char	*fill(t_game *game);
