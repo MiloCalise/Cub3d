@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:07:11 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/09 16:19:42 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/11 17:39:26 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,27 +73,6 @@ int	map_check(t_game *game)
 	return (0);
 }
 
-
-void  check_map_flood(t_game *game, char **copy)
-{
-  int i;
-  int j;
-
-  i = 1;
-  while (i < game->map_size)
-  {
-    j = 0;
-    while (j < game->max_len)
-    {
-      if (copy[i][j] == '0' || copy[i][j] == 'N' || copy[i][j] == 'S'
-          || copy[i][j] == 'E' || copy[i][j] == 'W')
-        game->player_x = -1;
-      j++;
-    }
-    i++;
-  }
-}
-
 int	do_flood(t_game *game)
 {
 	char	**copy;
@@ -108,19 +87,9 @@ int	do_flood(t_game *game)
 	get_max(game);
 	if (copy_map(copy, game) == 1)
 		return (free_split(copy), 1);
-	flood_fill(game, game->player_x, game->player_y, copy);
-	for (int i = 0; i < game->map_size + 2; i++)
-		printf("%s\n", copy[i]);
-	/*for (int i = 1; i <= game->map_size; i++)
-	{
-		for (int j = 0; j < game->max_len; j++)
-		{
-			if (copy[i][j] == '0' || copy[i][j] == 'N' || copy[i][j] == 'S'
-				|| copy[i][j] == 'E' || copy[i][j] == 'W')
-				game->player_x = -1;
-		}
-	}*/
-  check_map_flood(game, copy);
+	flood_fill(game, game->player_x, game->player_y + 1, copy);
+	if (game->player_x == -1)
+		return (free_split(copy), 1);
 	if (game->player_x == -1)
 		return (free_split(copy), 1);
 	return (free_split(copy), 0);

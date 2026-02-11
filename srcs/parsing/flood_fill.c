@@ -6,11 +6,43 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 12:37:08 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/09 16:19:30 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/11 17:38:00 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
+void	debug_map(t_game *game, char **copy)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->map_size + 2)
+	{
+		printf("%s\n", copy[i]);
+		i++;
+	}
+}
+
+void	check_map_flood(t_game *game, char **copy)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < game->map_size + 2)
+	{
+		j = 0;
+		while (j < game->max_len)
+		{
+			if (copy[i][j] == '0' || copy[i][j] == 'N' || copy[i][j] == 'S'
+				|| copy[i][j] == 'E' || copy[i][j] == 'W')
+				game->player_x = -1;
+			j++;
+		}
+	i++;
+	}
+}
 
 void	get_max(t_game *game)
 {
@@ -59,7 +91,7 @@ void	flood_fill(t_game *game, int x, int y, char **copy)
 {
 	if (x < 0 || y < 0 || y > game->map_size + 1 || x > (int)ft_strlen(copy[y]))
 		return ;
-	if (!copy[y][x] || is_whitespace(copy[y][x]) || copy[y][x] == 'f')
+	if (!copy[y][x] || is_whitespace(copy[y][x]) || copy[y][x] == 'M')
 	{
 		game->player_x = -1;
 		return ;

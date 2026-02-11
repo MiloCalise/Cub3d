@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 14:08:15 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/08 15:03:45 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/11 17:02:51 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	fill_line(char *s, t_game *game, int y)
 	ft_strlcpy(s, game->map[y], len + 1);
 	while (i < game->max_len)
 	{
-		s[i] = 'f';
+		s[i] = 'M';
 		i++;
 	}
 	s[i] = '\0';
@@ -54,7 +54,7 @@ char	*fill(t_game *game)
 	i = 0;
 	while (i < game->max_len)
 	{
-		res[i] = 'f';
+		res[i] = 'M';
 		i++;
 	}
 	res[i] = '\0';
