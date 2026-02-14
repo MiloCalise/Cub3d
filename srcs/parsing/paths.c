@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 13:04:08 by miltavar          #+#    #+#             */
-/*   Updated: 2026/01/15 16:00:02 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/14 11:44:52 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*grab_path(char *str, char *to_find)
 		return (NULL);
 	i += 2;
 	skip_whitespaces(str, &i);
+	if (!str[i])
+		return (NULL);
 	len = ft_strlen(str + i);
 	res = ft_calloc(len, sizeof(char));
 	if (!res)

@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:02:12 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/09 16:05:49 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/14 11:40:57 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check_rgb(char *s)
 	int	i;
 
 	if (!s)
-		return (0);
+		return (1);
 	i = 0;
 	while (s[i])
 	{
@@ -44,6 +44,8 @@ static int	parse_rgb_value(char *str, int *start, int *tab, int index)
 	s = ft_substr(str, len, *start - len);
 	if (!s)
 		return (get_next_line(-42), 1);
+	if (!*s)
+		return (free(s), get_next_line(-42), 1);
 	if (check_rgb(s))
 		return (get_next_line(-42), free(s), 1);
 	tab[index] = ft_atoi(s);
@@ -58,7 +60,6 @@ int	grab_colors(int tab[3], char *str, char *tofind)
 	int	i;
 
 	i = 0;
-	1 && (tab[0] = -1, tab[1] = -1, tab[2] = -1);
 	skip_whitespaces(str, &i);
 	if (ft_strncmp(str + i, tofind, 1) != 0)
 		return (1);
@@ -73,8 +74,6 @@ int	grab_colors(int tab[3], char *str, char *tofind)
 		return (1);
 	skip_whitespaces(str, &i);
 	if (parse_rgb_value(str, &i, tab, 2) == 1)
-		return (1);
-	if (tab[0] == -1 || tab[1] == -1 || tab[2] == -1)
 		return (1);
 	return (0);
 }

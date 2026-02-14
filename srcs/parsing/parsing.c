@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:31:21 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/11 17:14:54 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/14 11:26:04 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	parse_delim(char delim[2], t_game *game, char *temp)
 			| (game->t_clr[1] << 8) | game->t_clr[2];
 		return (y++, 0);
 	}
-	if (paths_dir(delim, game, temp))
-		return (1);
-	else
+	else if (!paths_dir(delim, game, temp))
 		return (0);
+	else
+		return (1);
 	return (1);
 }
 
