@@ -6,49 +6,49 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 18:27:21 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/14 11:55:17 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/14 12:05:03 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-static int parse_north(t_game *game, char *temp, char delim[2])
+static int	parse_north(t_game *game, char *temp, char delim[2])
 {
 	if (game->path_n)
 		return (1);
 	game->path_n = grab_path(temp, delim);
-		if (!game->path_n)
-			return (1);
+	if (!game->path_n)
+		return (1);
 	return (0);
 }
 
-static int parse_south(t_game *game, char *temp, char delim[2])
+static int	parse_south(t_game *game, char *temp, char delim[2])
 {
 	if (game->path_s)
 		return (1);
 	game->path_s = grab_path(temp, delim);
-		if (!game->path_s)
-			return (1);
+	if (!game->path_s)
+		return (1);
 	return (0);
 }
 
-static int parse_west(t_game *game, char *temp, char delim[2])
+static int	parse_west(t_game *game, char *temp, char delim[2])
 {
 	if (game->path_w)
 		return (1);
 	game->path_w = grab_path(temp, delim);
-		if (!game->path_w)
-			return (1);
+	if (!game->path_w)
+		return (1);
 	return (0);
 }
 
-static int parse_east(t_game *game, char *temp, char delim[2])
+static int	parse_east(t_game *game, char *temp, char delim[2])
 {
 	if (game->path_e)
 		return (1);
 	game->path_e = grab_path(temp, delim);
-		if (!game->path_e)
-			return (1);
+	if (!game->path_e)
+		return (1);
 	return (0);
 }
 
