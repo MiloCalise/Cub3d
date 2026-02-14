@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:02:12 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/14 11:40:57 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/14 12:36:39 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static int	parse_rgb_value(char *str, int *start, int *tab, int index)
 	if (check_rgb(s))
 		return (get_next_line(-42), free(s), 1);
 	tab[index] = ft_atoi(s);
-	if (tab[index] < 0 || tab[index] > 255)
+	if (tab[index] < 0 || tab[index] > 255
+		|| tab[index] < INT_MIN || tab[index] > INT_MAX)
 		return (get_next_line(-42), free(s), 1);
 	skip_whitespaces(str, start);
 	return (free(s), (*start)++, 0);

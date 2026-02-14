@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 16:23:18 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/11 17:39:14 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/14 12:25:03 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ typedef struct s_game
 	char			*path_s;
 	char			*path_w;
 	char			*path_e;
+
+	char			*gnl;
 
 	int				floor_clr;
 	int				top_clr;

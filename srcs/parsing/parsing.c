@@ -6,20 +6,20 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:31:21 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/14 11:26:04 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/14 12:43:37 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-int	parse_delim(char delim[2], t_game *game, char *temp)
+int	parse_delim(char delim[2], t_game *game)
 {
 	static int	i = 0;
 	static int	y = 0;
 
 	if (delim[0] == 'F')
 	{
-		if (i > 0 || grab_colors(game->f_clr, temp, delim))
+		if (i > 0 || grab_colors(game->f_clr, game->gnl, delim))
 			return (1);
 		game->floor_clr = (game->f_clr[0] << 16)
 			| (game->f_clr[1] << 8) | game->f_clr[2];
@@ -27,44 +27,53 @@ int	parse_delim(char delim[2], t_game *game, char *temp)
 	}
 	else if (delim[0] == 'C')
 	{
-		if (y > 0 || grab_colors(game->t_clr, temp, delim))
+		if (y > 0 || grab_colors(game->t_clr, game->gnl, delim))
 			return (1);
 		game->top_clr = (game->t_clr[0] << 16)
 			| (game->t_clr[1] << 8) | game->t_clr[2];
 		return (y++, 0);
 	}
-	else if (!paths_dir(delim, game, temp))
+	else if (!paths_dir(delim, game, game->gnl))
 		return (0);
 	else
 		return (1);
 	return (1);
 }
 
+static int	check_mapargs(t_game *game)
+{
+	if (!game->path_e || !game->path_n || !game->path_s || !game->path_w)
+		return (1);
+	if (!*game->path_e || !*game->path_n || !*game->path_s || !*game->path_w)
+		return (1);
+	if (game->top_clr == -1)
+		return (1);
+	if (game->floor_clr == -1)
+		return (1);
+	return (0);
+}
+
 int	distributor(t_game *game)
 {
-	char	*temp;
 	char	delim[2];
 	int		i;
-	int		count;
 
-	count = 0;
-	1 && (temp = get_next_line(game->map_fd),
-		skip_space(game->map_fd, &temp), 0);
-	if (!temp)
+	1 && (game->gnl = get_next_line(game->map_fd),
+		skip_space(game->map_fd, &game->gnl), 0);
+	if (!game->gnl)
 		return (get_next_line(-42), 1);
-	while (temp && count < 6)
+	while (game->gnl && check_mapargs(game))
 	{
-		1 && (i = 0, count++, skip_whitespaces(temp, &i),
-			delim[0] = temp[i], i++);
-		if (!temp[i])
-			return (get_next_line(-42), free(temp), 1);
-		delim[1] = temp[i];
-		if (parse_delim(delim, game, temp))
-			return (get_next_line(-42), free(temp), 1);
-		free(temp);
-		if (count != 6)
-			1 && (temp = get_next_line(game->map_fd),
-				skip_space(game->map_fd, &temp), 0);
+		1 && (i = 0, skip_whitespaces(game->gnl, &i),
+			delim[0] = game->gnl[i], i++);
+		if (!game->gnl[i])
+			return (get_next_line(-42), free(game->gnl), 1);
+		delim[1] = game->gnl[i];
+		if (parse_delim(delim, game))
+			return (get_next_line(-42), free(game->gnl), 1);
+		free(game->gnl);
+		1 && (game->gnl = get_next_line(game->map_fd),
+			skip_space(game->map_fd, &game->gnl), 0);
 	}
 	return (0);
 }
@@ -92,15 +101,6 @@ int	check_name(char *arg)
 	return (0);
 }
 
-int	check_colors(t_game *game)
-{
-	if (game->top_clr == -1)
-		return (1);
-	if (game->floor_clr == -1)
-		return (1);
-	return (0);
-}
-
 int	parsing(t_game *game, char *arg)
 {
 	if (check_name(arg))
@@ -113,13 +113,12 @@ int	parsing(t_game *game, char *arg)
 	if (distributor(game))
 		return (ft_putstr_fd("Invalid map\n", 2), close(game->map_fd),
 			free_all(game), 1);
-	if (check_colors(game))
-		return (ft_putstr_fd("Invalid map\n", 2), close(game->map_fd),
-			free_all(game), 1);
 	if (map(game) == 1)
 		return (ft_putstr_fd("Invalid map\n", 2), close(game->map_fd),
 			free_all(game), 1);
 	1 && (close(game->map_fd), get_next_line(-42));
+	if (check_mapargs(game))
+		return (ft_putstr_fd("Invalid map\n", 2), free_all(game), 1);
 	if (do_flood(game) == 1)
 		return (ft_putstr_fd("Invalid map\n", 2), free_all(game), 1);
 	init_directions(game);

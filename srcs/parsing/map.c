@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 15:07:11 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/11 17:39:26 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/14 12:37:22 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,23 +97,23 @@ int	do_flood(t_game *game)
 
 int	map(t_game *g)
 {
-	char		*temp;
 	int			i;
 	size_t		len;
 
 	1 && (i = 0, g->map = ft_calloc(100, sizeof(char *)));
 	if (!g)
 		return (perror(NULL), 1);
-	1 && (g->map_size = 0, temp = get_next_line(g->map_fd));
-	skip_space(g->map_fd, &temp);
-	while (temp && i < 100)
+	g->map_size = 0;
+	skip_space(g->map_fd, &g->gnl);
+	while (g->gnl && i < 100)
 	{
-		1 && (len = ft_strlen(temp), g->map[i] = ft_calloc(len, sizeof(char)));
+		len = ft_strlen(g->gnl);
+		g->map[i] = ft_calloc(len, sizeof(char));
 		if (!g->map[i])
-			return (get_next_line(-42), free(temp), free_split(g->map), 1);
-		1 && (ft_strlcpy(g->map[i], temp, len),
-			free(temp), i++,
-			temp = get_next_line(g->map_fd), g->map_size++);
+			return (get_next_line(-42), free(g->gnl), free_split(g->map), 1);
+		1 && (ft_strlcpy(g->map[i], g->gnl, len),
+			free(g->gnl), i++,
+			g->gnl = get_next_line(g->map_fd), g->map_size++);
 	}
 	if (i >= 100 || i == 0)
 	{
