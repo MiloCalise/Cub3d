@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:02:12 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/14 13:16:48 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/16 12:18:39 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,28 +66,25 @@ static int	parse_rgb_value(char *str, int *start, int *tab, int index)
 {
 	char	*s;
 	int		len;
-	int		i;
 	int		tmp;
 
 	len = *start;
 	while (str[*start] && ft_isdigit(str[*start]))
 		(*start)++;
-	i = *start;
-	skip_whitespaces(str, &i);
-	if (str[i] && str[i] != ',')
-		return (get_next_line(-42), 1);
 	s = ft_substr(str, len, *start - len);
-	if (!s)
-		return (get_next_line(-42), 1);
-	if (!*s || check_rgb(s))
-		return (free(s), get_next_line(-42), 1);
-	if (ft_atoi_ow(s, &tmp))
-		return (free(s), get_next_line(-42), 1);
-	if (tmp < 0 || tmp > 255)
+	if (!s || !*s || check_rgb(s) || ft_atoi_ow(s, &tmp)
+		|| tmp < 0 || tmp > 255)
 		return (free(s), get_next_line(-42), 1);
 	tab[index] = tmp;
+	free(s);
 	skip_whitespaces(str, start);
-	return (free(s), (*start)++, 0);
+	if (index < 2)
+	{
+		if (str[*start] != ',')
+			return (get_next_line(-42), 1);
+		(*start)++;
+	}
+	return (0);
 }
 
 int	grab_colors(int tab[3], char *str, char *tofind)
