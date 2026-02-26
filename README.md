@@ -1,34 +1,116 @@
-# 🐺 Cub3D
+# cub3D - Raycasting Engine
 
-**Cub3D** est un projet de l'école 42 inspiré du célèbre jeu des années 90, *Wolfenstein 3D*. L'objectif est de créer un moteur 3D rudimentaire utilisant la technique du **Raycasting** pour représenter un labyrinthe texturé en temps réel, le tout en langage C avec la bibliothèque MiniLibX.
+## 📝 Présentation
+**cub3D** est un moteur de jeu 3D développé en **C**, inspiré du célèbre *Wolfenstein 3D*.  
+Ce projet reproduit le principe du raycasting utilisé dans le jeu iconique **Wolfenstein 3D** (id Software, 1992).
 
-## 🌟 Fonctionnalités
+L'objectif est de générer une projection 3D à partir d'une carte 2D en utilisant des calculs mathématiques précis pour le rendu, les collisions et la gestion des textures.
 
-- **Moteur 3D par Raycasting** : Rendu fluide et calcul des distances à l'aide de l'algorithme DDA.
-- **Textures directionnelles** : Affichage de textures distinctes selon l'orientation des murs (Nord, Sud, Est, Ouest).
-- **Environnement coloré** : Couleurs paramétrables pour le sol (Floor) et le plafond (Ceiling) via le fichier de configuration.
-- **Déplacements et Collisions** : Gestion complète des mouvements (avancer, reculer, pas chassés, rotation) avec glissement sur les murs (gestion des collisions).
-- **Parsing robuste** : Lecture et vérification rigoureuse de la carte (`.cub`) pour éviter toute fuite ou erreur de format (Flood Fill algorithme intégré).
-- **Bonus** : (Si implémentés) Mini-map pour se repérer, textures animées ou portes.
+Le projet repose sur la bibliothèque graphique **MiniLibX**, fournie dans le cadre de l’école 42.
 
-## 🛠️ Prérequis
+---
 
-Pour compiler et jouer, vous aurez besoin de :
-- `gcc` ou `clang`
-- `make`
-- Dépendances graphiques pour X11 (sous Linux) : `libxext-dev` et `libx11-dev`
+## 🚀 Fonctionnalités
 
-## 🚀 Installation & Lancement
+### ✅ Partie Obligatoire
+- 🎯 **Moteur de Raycasting**
+  - Projection 3D à partir d'une carte 2D
+  - Correction de l'effet *fisheye*
+  - Calcul des distances perpendiculaires aux murs
 
-Clonez le dépôt, puis utilisez le `Makefile` pour compiler le projet :
+- 🧱 **Textures**
+  - Textures différentes selon l’orientation des murs :
+    - Nord
+    - Sud
+    - Est
+    - Ouest
+
+- 🎨 **Gestion des couleurs**
+  - Sol et plafond configurables via format RGB :
+    ```
+    F 220,100,0
+    C 225,30,0
+    ```
+
+- 🎮 **Contrôles joueur**
+  - `W`, `A`, `S`, `D` → Déplacements
+  - `←` `→` → Rotation caméra
+  - `ESC` → Quitter proprement
+
+- 📂 **Parsing robuste**
+  - Vérification stricte du fichier `.cub`
+  - Carte entièrement fermée par des murs
+  - Une seule position joueur
+  - Chemins de textures valides
+  - RGB valides
+
+---
+
+### ⭐ Partie Bonus
+- 🗺️ **Minimap**
+  - Affichage en temps réel
+  - Direction du joueur visible
+
+- 🖱️ **Rotation souris**
+  - Caméra contrôlable à la souris
+
+- 🧱 **Textures sol/plafond**
+  - Remplacement des couleurs unies (floor celing)
+
+- ⚡ **Optimisation**
+  - Algorithme **DDA (Digital Differential Analysis)**
+  - Rendu fluide
+  - Pas de scintillement
+
+---
+
+## 🛠️ Installation & Compilation
+
+### 1️⃣ Cloner le projet
 
 ```bash
-# Cloner le projet
-git clone <votre_lien_git> cub3d
-cd cub3d
+git clone https://github.com/MiloCalise/Cub3d.git
+cd cub3D
+```
 
-# Compiler l'exécutable
+### 2️⃣ Compiler
+```bash
 make
+make clean
+make fclean
+make re
+```
 
-# Lancer le jeu avec une carte (plusieurs cartes dispos dans le dossier maps/)
-./cub3D maps/test.cub
+---
+
+## 🎮 Utilisation
+
+### Lancer le programme avec une carte valide :
+```bash
+./cub3D maps/big.cub
+```
+### Avec bonus :
+```bash
+./cub3D maps/big.cub --bonus
+```
+
+---
+
+## 🗂️ Format du fichier .cub
+
+### Exemple minimal :
+```
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
+
+F 220,100,0
+C 225,30,0
+
+111111
+100001
+10N001
+100001
+111111
+```
