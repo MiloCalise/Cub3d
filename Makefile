@@ -6,13 +6,13 @@
 #    By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/30 16:11:53 by miltavar          #+#    #+#              #
-#    Updated: 2026/02/08 18:51:59 by miltavar         ###   ########.fr        #
+#    Updated: 2026/02/26 13:55:00 by molapoug         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= cub3D
 CC			= cc
-CFLAGS		= -g3 -Wall -Werror -Wextra -Ilibs/libft/includes -Ilibs/ft_fprintf -Iincludes -Imlx
+CFLAGS		= -g3 -Ilibs/libft/includes -Ilibs/ft_fprintf -Iincludes -Imlx
 MLXFLAGS 	= -Lmlx -lmlx_Linux -lXext -lX11 -lm
 
 MAKE = make -s -C
@@ -39,6 +39,7 @@ SRCS = srcs/main.c \
 		srcs/game/dda_bonus.c \
 		srcs/game/dda_utils.c\
 		srcs/mini_map/mini_map.c \
+		srcs/mini_map/ray_player.c \
 		srcs/background/background.c \
 		srcs/images/textures_bonus.c \
 

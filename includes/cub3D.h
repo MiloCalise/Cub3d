@@ -120,6 +120,7 @@ typedef struct s_game
 	double			coll_margin;
 	double			move_speed;
 	double			rot_speed;
+	int             mouse_x;
 	double			frame_time;
 	double			old_time;
 
@@ -186,6 +187,7 @@ void	step_calc(t_game *game, t_tex *tex);
 void	pixel_loop(t_game *game, t_tex *tex, int *color, int x);
 void	draw_textured_background(t_game *g);
 void	load_textures(t_game *g);
+void    draw_rays(t_game *g);
 
 t_tex	*wall_select(t_game *game);
 
@@ -214,6 +216,7 @@ void	rotate_left(t_game *g, double angle);
 
 int		exit_game(t_game *game);
 int		keys(int keycode, t_game *game);
+int		mouse_move(int x, int y, t_game *game);
 
 /* utils */
 

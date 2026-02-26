@@ -103,4 +103,5 @@ void	draw_minimap(t_game *g)
 	center_y = 20 + radius;
 	draw_radar_circle(g, radius, center_x, center_y);
 	draw_player_icon(g, center_x, center_y);
+	draw_rays(g);
 }

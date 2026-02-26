@@ -34,6 +34,25 @@ void	handle_minimap_keys(int keycode, t_game *game)
 	}
 }
 
+int	mouse_move(int x, int y, t_game *game)
+{
+	int		center_x;
+	double	delta;
+
+	(void)y;
+	center_x = game->scr_x / 2;
+	delta = (x - center_x) * 0.002;
+	if (delta == 0.0)
+		return (0);
+	if (delta > 0)
+		rotate_right(game, delta);
+	else
+		rotate_left(game, -delta);
+	mlx_mouse_move(game->gptr, game->win, center_x, game->scr_y / 2);
+	game->mouse_x = center_x;
+	return (0);
+}
+
 int	keys(int keycode, t_game *game)
 {
 	game->coll_margin = 0.4;

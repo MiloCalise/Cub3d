@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 12:04:11 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/16 12:26:42 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/02/26 14:36:34 by molapoug         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ int	game_init(t_game *game)
 	if (game_load(game) == 1)
 		return (free_all(game), 1);
 	mlx_hook(game->win, 2, 1L, keys, game);
+	mlx_hook(game->win, 6, 1L << 6, mouse_move, game);
 	mlx_hook(game->win, 17, 0L, exit_game, game);
+	mlx_mouse_move(game->gptr, game->win, game->scr_x / 2, game->scr_y / 2);
 	mlx_loop_hook(game->gptr, game_loop, game);
 	mlx_loop(game->gptr);
 	return (0);
