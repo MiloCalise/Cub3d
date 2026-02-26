@@ -13,7 +13,7 @@
 NAME		= cub3D
 CC			= cc
 CFLAGS		= -g3 -Ilibs/libft/includes -Ilibs/ft_fprintf -Iincludes -Imlx
-MLXFLAGS 	= -Lmlx -lmlx_Linux -lXext -lX11 -lm
+MLXFLAGS 	= -Wall -Werror -Wextra -Lmlx -lmlx_Linux -lXext -lX11 -lm
 
 MAKE = make -s -C
 

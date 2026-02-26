@@ -41,7 +41,7 @@ int	mouse_move(int x, int y, t_game *game)
 
 	(void)y;
 	center_x = game->scr_x / 2;
-	delta = (x - center_x) * 0.002;
+	delta = (x - center_x) * 0.00005;
 	if (delta == 0.0)
 		return (0);
 	if (delta > 0)
