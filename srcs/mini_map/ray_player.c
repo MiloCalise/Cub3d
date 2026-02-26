@@ -72,8 +72,8 @@ void	draw_rays(t_game *g)
 	i = 0;
 	while (i < 90)
 	{
-        angle_step = fov / 90.0;
-	    player_angle = atan2(g->ray->dir_y, g->ray->dir_x);
+		angle_step = fov / 90.0;
+		player_angle = atan2(g->ray->dir_y, g->ray->dir_x);
 		cast_ray(g, player_angle - fov / 2.0 + i * angle_step);
 		i++;
 	}

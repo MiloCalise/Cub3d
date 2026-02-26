@@ -74,7 +74,7 @@ static int	parse_rgb_value(char *str, int *start, int *tab, int index)
 	s = ft_substr(str, len, *start - len);
 	if (!s || !*s || check_rgb(s) || ft_atoi_ow(s, &tmp)
 		|| tmp < 0 || tmp > 255)
-		return (free(s), get_next_line(-42),1);
+		return (free(s), get_next_line(-42), 1);
 	tab[index] = tmp;
 	free(s);
 	skip_whitespaces(str, start);

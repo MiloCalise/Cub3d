@@ -40,7 +40,7 @@ void	check_map_flood(t_game *game, char **copy)
 				game->player_x = -1;
 			j++;
 		}
-	i++;
+		i++;
 	}
 }
 
