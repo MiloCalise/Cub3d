@@ -73,12 +73,18 @@ git clone https://github.com/MiloCalise/Cub3d.git
 cd cub3D
 ```
 
-### 2️⃣ Compiler
+### 2️⃣ Regles de compilation
 ```bash
 make
 make clean
 make fclean
 make re
+```
+
+### Comilation du projet
+
+```bash
+make
 ```
 
 ---
