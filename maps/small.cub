@@ -3,9 +3,8 @@ EA                ./ressources/cat_east.xpm
 NO ./ressources/cat_north.xpm
 
 SO ./ressources/cat_south.xpm
-C 23, 34 , 32
+C 23, 34, 56
 WE ./ressources/cat_west.xpm
-
 
 
 111111111

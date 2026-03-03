@@ -6,7 +6,7 @@
 /*   By: miltavar <miltavar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:02:12 by miltavar          #+#    #+#             */
-/*   Updated: 2026/02/16 12:18:39 by miltavar         ###   ########.fr       */
+/*   Updated: 2026/03/03 12:18:13 by miltavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int	grab_colors(int tab[3], char *str, char *tofind)
 		return (1);
 	skip_whitespaces(str, &i);
 	if (parse_rgb_value(str, &i, tab, 2) == 1)
+		return (1);
+	if (str[i])
 		return (1);
 	return (0);
 }
