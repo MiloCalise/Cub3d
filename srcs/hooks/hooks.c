@@ -68,6 +68,8 @@ int	keys(int keycode, t_game *game)
 		move_right(game);
 	else if (keycode == XK_a)
 		move_left(game);
+	else if (keycode == XK_space)
+		shoot_projectile(game);
 	else if (keycode == XK_Left)
 		rotate_left(game, game->rot_speed);
 	else if (keycode == XK_Right)

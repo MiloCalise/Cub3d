@@ -22,7 +22,9 @@ int	game_loop_bonus(t_game *g)
 	g->old_time = current_time;
 	draw_textured_background(g);
 	dda_bonus(g);
+	update_projectile(g);
 	draw_minimap(g);
+	draw_projectile(g);
 	mlx_put_image_to_window(g->gptr, g->win, g->main.img, 0, 0);
 	calc_fps(g);
 	return (0);

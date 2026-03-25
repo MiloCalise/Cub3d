@@ -33,4 +33,5 @@ void	load_textures(t_game *g)
 {
 	load_xpm(g, &g->floor, "./ressources/floor.xpm");
 	load_xpm(g, &g->ciel, "./ressources/sky.xpm");
+	load_xpm(g, &g->path_proj, "./ressources/projectible.xpm");
 }

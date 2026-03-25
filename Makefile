@@ -42,6 +42,7 @@ SRCS = srcs/main.c \
 		srcs/mini_map/ray_player.c \
 		srcs/background/background.c \
 		srcs/images/textures_bonus.c \
+		srcs/shoot/shoot.c
 
 BOLD = \e[1m
 GRAY = \e[30m

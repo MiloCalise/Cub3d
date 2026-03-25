@@ -24,17 +24,16 @@ int	main(int argc, char **argv)
 	game->ray = ft_calloc(1, sizeof(t_ray));
 	if (!game->ray)
 		return (perror(NULL), free(game), 1);
+	game->shoot = ft_calloc(1, sizeof(t_proj));
+	if (!game->shoot)
+		return (perror(NULL), free(game), 1);
 	if (parsing(game, argv[1]) == 1)
 		return (1);
 	if (argv[2] && ft_strncmp(argv[2], "--bonus", 7) == 0)
-	{
 		if (game_init_bonus(game) == 1)
-			return (1);
-	}
+			return (free(game), 1);
 	else
-	{
 		if (game_init(game) == 1)
 			return (1);
-	}
 	return (0);
 }

@@ -92,6 +92,20 @@ typedef struct s_ray
 
 }					t_ray;
 
+typedef struct s_proj
+{
+    double 			x;
+    double			y;
+    double			dir_x;
+    double			dir_y;
+    double			speed;
+	double			dist;
+
+    int				active;
+
+	t_tex	tex;
+} t_proj;
+
 typedef struct s_game
 {
 	struct timeval	time;
@@ -100,6 +114,7 @@ typedef struct s_game
 	char			*path_s;
 	char			*path_w;
 	char			*path_e;
+	char			*path_proj;
 
 	char			*gnl;
 
@@ -141,6 +156,8 @@ typedef struct s_game
 	float			ray_dir1[2];
 
 	t_ray			*ray;
+
+	t_proj			*shoot;
 
 }					t_game;
 
@@ -188,6 +205,8 @@ void	pixel_loop(t_game *game, t_tex *tex, int *color, int x);
 void	draw_textured_background(t_game *g);
 void	load_textures(t_game *g);
 void	draw_rays(t_game *g);
+void	update_projectile(t_game *game);
+void	draw_projectile(t_game *game);
 
 t_tex	*wall_select(t_game *game);
 
